@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+
+@import "tailwindcss";
+@theme {
+  /* Define custom color tokens */
+  --color-yt-black-12: #121212;
+  --color-yt-black-18: #181818;
+  --color-yt-black-21: #212121;
+  --color-yt-black-32: #323232;
+  --color-yt-black-38: #383838;
+  --color-yt-black-48: #474747;
+  --color-yt-white: #ffffff;
+  --color-yt-gray-aa: #aaaaaa;
+  --color-yt-blue: #3da6ff;
+  --font-roboto: "Roboto", sans-serif;
+  --font-sans: "Roboto", sans-serif;
+}
+@layer base {
+  html {
+    font-family: var(--font-sans);
+  }
+  body {
+    font-family: var(--font-sans);
+  }
+}
+body {
+  @apply bg-yt-black-12 font-roboto text-yt-white font-semibold;
+}
