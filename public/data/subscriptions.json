@@ -1,0 +1,56 @@
+[
+  {
+    "name": "Thebausffs",
+    "avatar": "data:image/svg+xml,%3csvg width='32' height='32' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='32' height='32' fill='%23666'/%3e%3ctext x='50%25' y='50%25' font-size='12' fill='white' text-anchor='middle' dy='.3em'%3eT%3c/text%3e%3c/svg%3e",
+    "isLive": true,
+    "hasNewNotification": true
+  },
+  {
+    "name": "SANKARA",
+    "avatar": "data:image/svg+xml,%3csvg width='32' height='32' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='32' height='32' fill='%23666'/%3e%3ctext x='50%25' y='50%25' font-size='12' fill='white' text-anchor='middle' dy='.3em'%3eS%3c/text%3e%3c/svg%3e",
+    "isLive": true,
+    "hasNewNotification": false
+  },
+  {
+    "name": "Rouice TV",
+    "avatar": "data:image/svg+xml,%3csvg width='32' height='32' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='32' height='32' fill='%23666'/%3e%3ctext x='50%25' y='50%25' font-size='12' fill='white' text-anchor='middle' dy='.3em'%3eR%3c/text%3e%3c/svg%3e",
+    "isLive": false,
+    "hasNewNotification": true
+  },
+  {
+    "name": "الخبير الاقتصادي - M...",
+    "avatar": "data:image/svg+xml,%3csvg width='32' height='32' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='32' height='32' fill='%23666'/%3e%3ctext x='50%25' y='50%25' font-size='12' fill='white' text-anchor='middle' dy='.3em'%3eM%3c/text%3e%3c/svg%3e",
+    "isLive": false,
+    "hasNewNotification": false
+  },
+  {
+    "name": "BoxBox",
+    "avatar": "data:image/svg+xml,%3csvg width='32' height='32' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='32' height='32' fill='%23666'/%3e%3ctext x='50%25' y='50%25' font-size='12' fill='white' text-anchor='middle' dy='.3em'%3eB%3c/text%3e%3c/svg%3e",
+    "isLive": true,
+    "hasNewNotification": true
+  },
+  {
+    "name": "Fireship",
+    "avatar": "data:image/svg+xml,%3csvg width='32' height='32' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='32' height='32' fill='%23666'/%3e%3ctext x='50%25' y='50%25' font-size='12' fill='white' text-anchor='middle' dy='.3em'%3eF%3c/text%3e%3c/svg%3e",
+    "isLive": false,
+    "hasNewNotification": false
+  },
+  {
+    "name": "بلقصير",
+    "avatar": "data:image/svg+xml,%3csvg width='32' height='32' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='32' height='32' fill='%23666'/%3e%3ctext x='50%25' y='50%25' font-size='12' fill='white' text-anchor='middle' dy='.3em'%3eP%3c/text%3e%3c/svg%3e",
+    "isLive": false,
+    "hasNewNotification": true
+  },
+  {
+    "name": "The Coding Train",
+    "avatar": "data:image/svg+xml,%3csvg width='32' height='32' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='32' height='32' fill='%23666'/%3e%3ctext x='50%25' y='50%25' font-size='12' fill='white' text-anchor='middle' dy='.3em'%3eC%3c/text%3e%3c/svg%3e",
+    "isLive": true,
+    "hasNewNotification": false
+  },
+  {
+    "name": "The Coding Train",
+    "avatar": "data:image/svg+xml,%3csvg width='32' height='32' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='32' height='32' fill='%23666'/%3e%3ctext x='50%25' y='50%25' font-size='12' fill='white' text-anchor='middle' dy='.3em'%3eC%3c/text%3e%3c/svg%3e",
+    "isLive": false,
+    "hasNewNotification": true
+  }
+]

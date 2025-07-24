@@ -5,49 +5,73 @@ import SearchBar from "./SearchBar";
 import notificationsIcon from "../assets/icons/white_icons/notifications.svg";
 import createIcon from "../assets/icons/white_icons/create-1.svg";
 import profileIcon from "../assets/images/profilePicture.jpg";
+import { useSidebar } from "../context/SidebarContext";
 
 export default function Header() {
+  const { toggleSidebar } = useSidebar();
+
+  const handleHamburgerClick = () => {
+    toggleSidebar();
+  };
+
   return (
-    <header className="flex flex-row items-center justify-between w-full fixed top-0 left-0 right-0 z-50 bg-yt-black-12 !px-6 !py-3 ">
-      <div className="flex items-center gap-4">
+    <header className="flex flex-row items-center justify-between w-full bg-yt-black-12 !px-3 sm:!px-6 !py-2 sm:!py-3 h-full border-b border-yt-black-32">
+      <div className="flex items-center !gap-2 sm:!gap-4">
         <IconButton
           icon={HamburgerIcon}
           alt="Menu Icon"
-          iconSize="24px"
-          h="44px"
-          w="44px"
+          iconSize="20px"
+          h="36px"
+          w="36px"
+          onClick={handleHamburgerClick}
+          className="sm:!h-[44px] sm:!w-[44px]"
         />
-        <img src={YouTubeLogo} alt="YouTube Logo" style={{ height: "24px" }} />
+        <img
+          src={YouTubeLogo}
+          alt="YouTube Logo"
+          className="!hidden sm:!block h-5 sm:h-6"
+        />
       </div>
-      <SearchBar />
-      <div className="flex items-center gap-3">
-        <IconButton
-          src={createIcon}
-          alt="Create Icon"
-          text="Create"
-          iconSize="24px"
-          h="40px"
-          fontSize="14px"
-          bg="rgba(255, 255, 255, 0.05)"
-          _hover={{
-            bg: "rgba(255, 255, 255, 0.1)",
-          }}
-        />
+      <div className="flex-1 max-w-2xl !mx-2 sm:!mx-4">
+        <SearchBar />
+      </div>
+      <div className="flex items-center !gap-1 sm:!gap-3">
+        {/* Create button - hidden on mobile */}
+        <div className="hidden md:block">
+          <IconButton
+            src={createIcon}
+            alt="Create Icon"
+            text="Create"
+            iconSize="24px"
+            h="40px"
+            fontSize="14px"
+            bg="rgba(255, 255, 255, 0.05)"
+            _hover={{
+              bg: "rgba(255, 255, 255, 0.1)",
+            }}
+          />
+        </div>
+
+        {/* Notifications - smaller on mobile */}
         <IconButton
           src={notificationsIcon}
           alt="Notifications Icon"
-          iconSize="24px"
-          h="44px"
-          w="44px"
+          iconSize="20px"
+          h="36px"
+          w="36px"
+          className="sm:!h-[44px] sm:!w-[44px]"
         />
+
+        {/* Profile - smaller on mobile */}
         <IconButton
           src={profileIcon}
           alt="Profile Icon"
-          iconSize="36px"
-          h="36px"
-          w="36px"
+          iconSize="28px"
+          h="28px"
+          w="28px"
           borderRadius="50%"
           border="2px solid transparent"
+          className="sm:!h-[36px] sm:!w-[36px]"
           _hover={{
             bg: "rgba(255, 255, 255, 0.1)",
             border: "2px solid rgba(255, 255, 255, 0.2)",

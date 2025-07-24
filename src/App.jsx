@@ -1,7 +1,5 @@
-import Header from "./components/Header";
+import HomePage from "./pages/homePage";
 
 export default function App() {
-  return <div className="App ">
-    <Header />
-  </div>;
+  return <HomePage />;
 }
