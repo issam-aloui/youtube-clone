@@ -18,6 +18,8 @@ import exploreIcon from "../assets/icons/white_icons/explore.svg";
 import down_arrow from "../assets/icons/white_icons/down_arrow.svg";
 import HamburgerIcon from "../assets/icons/white_icons/hambarger.svg";
 import YouTubeLogo from "../assets/icons/black_icons/YouTube_logo.svg";
+//import hooks
+import data_fetch from "../hooks/data_fetch";
 
 const Sidebar = () => {
   const [subscriptions, setSubscriptions] = useState([]);
@@ -29,16 +31,10 @@ const Sidebar = () => {
     const fetchSubscriptions = async () => {
       try {
         setLoading(true);
-
+        data_fetch("/data/subscriptions.json").then((data) => {
+          setSubscriptions(data);
+        });
         // Fetch from public folder
-        const response = await fetch("/data/subscriptions.json");
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const data = await response.json();
-        setSubscriptions(data);
       } catch (error) {
         console.error("Error fetching subscriptions:", error);
 
@@ -55,36 +51,6 @@ const Sidebar = () => {
             avatar:
               "data:image/svg+xml,%3csvg width='32' height='32' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='32' height='32' fill='%23666'/%3e%3ctext x='50%25' y='50%25' font-size='12' fill='white' text-anchor='middle' dy='.3em'%3eS%3c/text%3e%3c/svg%3e",
             isLive: true,
-          },
-          {
-            name: "Rouice TV",
-            avatar:
-              "data:image/svg+xml,%3csvg width='32' height='32' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='32' height='32' fill='%23666'/%3e%3ctext x='50%25' y='50%25' font-size='12' fill='white' text-anchor='middle' dy='.3em'%3eR%3c/text%3e%3c/svg%3e",
-            isLive: false,
-          },
-          {
-            name: "الخبير الاقتصادي - M...",
-            avatar:
-              "data:image/svg+xml,%3csvg width='32' height='32' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='32' height='32' fill='%23666'/%3e%3ctext x='50%25' y='50%25' font-size='12' fill='white' text-anchor='middle' dy='.3em'%3eM%3c/text%3e%3c/svg%3e",
-            isLive: false,
-          },
-          {
-            name: "BoxBox",
-            avatar:
-              "data:image/svg+xml,%3csvg width='32' height='32' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='32' height='32' fill='%23666'/%3e%3ctext x='50%25' y='50%25' font-size='12' fill='white' text-anchor='middle' dy='.3em'%3eB%3c/text%3e%3c/svg%3e",
-            isLive: true,
-          },
-          {
-            name: "Fireship",
-            avatar:
-              "data:image/svg+xml,%3csvg width='32' height='32' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='32' height='32' fill='%23666'/%3e%3ctext x='50%25' y='50%25' font-size='12' fill='white' text-anchor='middle' dy='.3em'%3eF%3c/text%3e%3c/svg%3e",
-            isLive: false,
-          },
-          {
-            name: "بلقصير",
-            avatar:
-              "data:image/svg+xml,%3csvg width='32' height='32' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='32' height='32' fill='%23666'/%3e%3ctext x='50%25' y='50%25' font-size='12' fill='white' text-anchor='middle' dy='.3em'%3eP%3c/text%3e%3c/svg%3e",
-            isLive: false,
           },
         ];
 

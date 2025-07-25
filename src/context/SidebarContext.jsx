@@ -14,7 +14,7 @@ export const useSidebar = () => {
 
 // Provider component
 export const SidebarProvider = ({ children }) => {
-  const [isCollapsed, setIsCollapsed] = useState(true);
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
   const toggleSidebar = () => {
     setIsCollapsed((prev) => !prev);
