@@ -1,244 +1,197 @@
 [
   {
+    "id": 1,
+    "thumbnail": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg",
+    "title": "Big Buck Bunny",
+    "channelName": "Blender Foundation",
+    "channelAvatar": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg",
+    "views": 2340000,
+    "uploadDate": "2 weeks ago",
+    "duration": "10:34",
+    "isVerified": true,
+    "description": "Big Buck Bunny tells the story of a giant rabbit with a heart bigger than himself. When one sunny day three rodents rudely harass him, something snaps... and the rabbit ain't no bunny anymore! In the typical cartoon tradition he prepares the nasty rodents a comical revenge.\n\nLicensed under the Creative Commons Attribution license\nhttp://www.bigbuckbunny.org",
+    "sources": [
+      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+    ]
+  },
+  {
+    "id": 2,
+    "thumbnail": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ElephantsDream.jpg",
+    "title": "Elephant Dream",
+    "channelName": "Blender Foundation",
+    "channelAvatar": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ElephantsDream.jpg",
+    "views": 1560000,
+    "uploadDate": "3 weeks ago",
+    "duration": "10:53",
+    "isVerified": true,
+    "description": "The first Blender Open Movie from 2006",
+    "sources": [
+      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+    ]
+  },
+  {
+    "id": 3,
+    "thumbnail": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerBlazes.jpg",
+    "title": "For Bigger Blazes",
+    "channelName": "Google",
+    "channelAvatar": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerBlazes.jpg",
+    "views": 890000,
+    "uploadDate": "1 week ago",
+    "duration": "0:15",
+    "isVerified": true,
+    "description": "HBO GO now works with Chromecast -- the easiest way to enjoy online video on your TV. For when you want to settle into your Iron Throne to watch the latest episodes. For $35.\nLearn how to use Chromecast with HBO GO and more at google.com/chromecast.",
+    "sources": [
+      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+    ]
+  },
+  {
+    "id": 4,
+    "thumbnail": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerEscapes.jpg",
+    "title": "For Bigger Escape",
+    "channelName": "Google",
+    "channelAvatar": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerEscapes.jpg",
+    "views": 750000,
+    "uploadDate": "4 days ago",
+    "duration": "0:15",
+    "isVerified": true,
+    "description": "Introducing Chromecast. The easiest way to enjoy online video and music on your TV—for when Batman's escapes aren't quite big enough. For $35. Learn how to use Chromecast with Google Play Movies and more at google.com/chromecast.",
+    "sources": [
+      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
+    ]
+  },
+  {
+    "id": 5,
+    "thumbnail": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerFun.jpg",
+    "title": "For Bigger Fun",
+    "channelName": "Google",
+    "channelAvatar": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerFun.jpg",
+    "views": 1200000,
+    "uploadDate": "6 days ago",
+    "duration": "0:60",
+    "isVerified": true,
+    "description": "Introducing Chromecast. The easiest way to enjoy online video and music on your TV. For $35. Find out more at google.com/chromecast.",
+    "sources": [
+      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4"
+    ]
+  },
+  {
+    "id": 6,
+    "thumbnail": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerJoyrides.jpg",
+    "title": "For Bigger Joyrides",
+    "channelName": "Google",
+    "channelAvatar": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerJoyrides.jpg",
+    "views": 680000,
+    "uploadDate": "3 days ago",
+    "duration": "0:15",
+    "isVerified": true,
+    "description": "Introducing Chromecast. The easiest way to enjoy online video and music on your TV—for the times that call for bigger joyrides. For $35. Learn how to use Chromecast with YouTube and more at google.com/chromecast.",
+    "sources": [
+      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4"
+    ]
+  },
+  {
+    "id": 7,
+    "thumbnail": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerMeltdowns.jpg",
+    "title": "For Bigger Meltdowns",
+    "channelName": "Google",
+    "channelAvatar": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerMeltdowns.jpg",
+    "views": 920000,
+    "uploadDate": "5 days ago",
+    "duration": "0:15",
+    "isVerified": true,
+    "description": "Introducing Chromecast. The easiest way to enjoy online video and music on your TV—for when you want to make Buster's big meltdowns even bigger. For $35. Learn how to use Chromecast with Netflix and more at google.com/chromecast.",
+    "sources": [
+      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4"
+    ]
+  },
+  {
+    "id": 8,
+    "thumbnail": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/Sintel.jpg",
+    "title": "Sintel",
+    "channelName": "Blender Foundation",
+    "channelAvatar": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/Sintel.jpg",
+    "views": 3400000,
+    "uploadDate": "1 month ago",
+    "duration": "14:48",
+    "isVerified": true,
+    "description": "Sintel is an independently produced short film, initiated by the Blender Foundation as a means to further improve and validate the free/open source 3D creation suite Blender. With initial funding provided by 1000s of donations via the internet community, it has again proven to be a viable development model for both open 3D technology as for independent animation film.\nThis 15 minute film has been realized in the studio of the Amsterdam Blender Institute, by an international team of artists and developers. In addition to that, several crucial technical and creative targets have been realized online, by developers and artists and teams all over the world.\nwww.sintel.org",
+    "sources": [
+      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4"
+    ]
+  },
+  {
     "id": 9,
-    "thumbnail": "https://picsum.photos/320/180?random=9",
-    "title": "The Ultimate TypeScript Tutorial",
-    "channelName": "Code Boost",
-    "channelAvatar": "https://picsum.photos/40/40?random=109",
-    "views": 98000,
-    "uploadDate": "2 days ago",
-    "duration": "40:10",
-    "isVerified": true
+    "thumbnail": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/SubaruOutbackOnStreetAndDirt.jpg",
+    "title": "Subaru Outback On Street And Dirt",
+    "channelName": "Garage419",
+    "channelAvatar": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/SubaruOutbackOnStreetAndDirt.jpg",
+    "views": 450000,
+    "uploadDate": "2 weeks ago",
+    "duration": "7:32",
+    "isVerified": false,
+    "description": "Smoking Tire takes the all-new Subaru Outback to the highest point we can find in hopes our customer-appreciation Balloon Launch will get some free T-shirts into the hands of our viewers.",
+    "sources": [
+      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4"
+    ]
   },
   {
     "id": 10,
-    "thumbnail": "https://picsum.photos/320/180?random=10",
-    "title": "Beginner's Guide to Tailwind CSS",
-    "channelName": "DesignToCode",
-    "channelAvatar": "https://picsum.photos/40/40?random=110",
-    "views": 32000,
-    "uploadDate": "3 days ago",
-    "duration": "19:44",
-    "isVerified": false
+    "thumbnail": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/TearsOfSteel.jpg",
+    "title": "Tears of Steel",
+    "channelName": "Blender Foundation",
+    "channelAvatar": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/TearsOfSteel.jpg",
+    "views": 2100000,
+    "uploadDate": "3 weeks ago",
+    "duration": "12:14",
+    "isVerified": true,
+    "description": "Tears of Steel was realized with crowd-funding by users of the open source 3D creation tool Blender. Target was to improve and test a complete open and free pipeline for visual effects in film - and to make a compelling sci-fi film in Amsterdam, the Netherlands. The film itself, and all raw material used for making it, have been released under the Creatieve Commons 3.0 Attribution license. Visit the tearsofsteel.org website to find out more about this, or to purchase the 4-DVD box with a lot of extras. (CC) Blender Foundation - http://www.tearsofsteel.org",
+    "sources": [
+      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4"
+    ]
   },
   {
     "id": 11,
-    "thumbnail": "https://picsum.photos/320/180?random=11",
-    "title": "How to Center a Div: HTML & CSS Tutorial",
-    "channelName": "Simple Web Dev",
-    "channelAvatar": "https://picsum.photos/40/40?random=111",
-    "views": 147000,
+    "thumbnail": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/VolkswagenGTIReview.jpg",
+    "title": "Volkswagen GTI Review",
+    "channelName": "Garage419",
+    "channelAvatar": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/VolkswagenGTIReview.jpg",
+    "views": 380000,
     "uploadDate": "1 week ago",
-    "duration": "12:30",
-    "isVerified": false
+    "duration": "5:59",
+    "isVerified": false,
+    "description": "The Smoking Tire heads out to Adams Motorsports Park in Riverside, CA to test the most requested car of 2010, the Volkswagen GTI. Will it beat the Mazdaspeed3's standard-setting lap time? Watch and see...",
+    "sources": [
+      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/VolkswagenGTIReview.mp4"
+    ]
   },
   {
     "id": 12,
-    "thumbnail": "https://picsum.photos/320/180?random=12",
-    "title": "Kubernetes in 100 Seconds",
-    "channelName": "DevOps Guy",
-    "channelAvatar": "https://picsum.photos/40/40?random=112",
-    "views": 259000,
+    "thumbnail": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/WeAreGoingOnBullrun.jpg",
+    "title": "We Are Going On Bullrun",
+    "channelName": "Garage419",
+    "channelAvatar": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/WeAreGoingOnBullrun.jpg",
+    "views": 290000,
     "uploadDate": "4 days ago",
-    "duration": "1:40",
-    "isVerified": true
+    "duration": "2:43",
+    "isVerified": false,
+    "description": "The Smoking Tire is going on the 2010 Bullrun Live Rally in a 2011 Shelby GT500, and posting a video from the road every single day! The only place to watch them is by subscribing to The Smoking Tire or watching at BlackMagicShine.com",
+    "sources": [
+      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4"
+    ]
   },
   {
     "id": 13,
-    "thumbnail": "https://picsum.photos/320/180?random=13",
-    "title": "Mastering Next.js: Full Course",
-    "channelName": "React Factory",
-    "channelAvatar": "https://picsum.photos/40/40?random=113",
-    "views": 310000,
+    "thumbnail": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/WhatCarCanYouGetForAGrand.jpg",
+    "title": "What Car Can You Get For A Grand?",
+    "channelName": "Garage419",
+    "channelAvatar": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/WhatCarCanYouGetForAGrand.jpg",
+    "views": 150000,
     "uploadDate": "6 days ago",
-    "duration": "1:02:13",
-    "isVerified": true
-  },
-  {
-    "id": 14,
-    "thumbnail": "https://picsum.photos/320/180?random=14",
-    "title": "GitHub Copilot: Worth It?",
-    "channelName": "Code Thoughts",
-    "channelAvatar": "https://picsum.photos/40/40?random=114",
-    "views": 52000,
-    "uploadDate": "3 days ago",
-    "duration": "9:56",
-    "isVerified": false
-  },
-  {
-    "id": 15,
-    "thumbnail": "https://picsum.photos/320/180?random=15",
-    "title": "C++ in 20 Minutes: Crash Course",
-    "channelName": "Algo Code",
-    "channelAvatar": "https://picsum.photos/40/40?random=115",
-    "views": 88000,
-    "uploadDate": "5 days ago",
-    "duration": "20:00",
-    "isVerified": true
-  },
-  {
-    "id": 16,
-    "thumbnail": "https://picsum.photos/320/180?random=16",
-    "title": "Making a YouTube Clone with React & Firebase",
-    "channelName": "Cloner's Corner",
-    "channelAvatar": "https://picsum.photos/40/40?random=116",
-    "views": 178000,
-    "uploadDate": "2 weeks ago",
-    "duration": "1:30:15",
-    "isVerified": false
-  },
-  {
-    "id": 17,
-    "thumbnail": "https://picsum.photos/320/180?random=17",
-    "title": "Understanding REST vs GraphQL",
-    "channelName": "API Explained",
-    "channelAvatar": "https://picsum.photos/40/40?random=117",
-    "views": 94000,
-    "uploadDate": "3 days ago",
-    "duration": "23:10",
-    "isVerified": true
-  },
-  {
-    "id": 18,
-    "thumbnail": "https://picsum.photos/320/180?random=18",
-    "title": "Linux Basics for Developers",
-    "channelName": "Tech Shell",
-    "channelAvatar": "https://picsum.photos/40/40?random=118",
-    "views": 39000,
-    "uploadDate": "1 week ago",
-    "duration": "34:26",
-    "isVerified": false
-  },
-  {
-    "id": 19,
-    "thumbnail": "https://picsum.photos/320/180?random=19",
-    "title": "Responsive Web Design Tutorial",
-    "channelName": "Pixel Perfect",
-    "channelAvatar": "https://picsum.photos/40/40?random=119",
-    "views": 102000,
-    "uploadDate": "2 days ago",
-    "duration": "29:59",
-    "isVerified": true
-  },
-  {
-    "id": 20,
-    "thumbnail": "https://picsum.photos/320/180?random=20",
-    "title": "How Web Browsers Work",
-    "channelName": "Internet Internals",
-    "channelAvatar": "https://picsum.photos/40/40?random=120",
-    "views": 265000,
-    "uploadDate": "4 days ago",
-    "duration": "14:22",
-    "isVerified": false
-  },
-  {
-    "id": 21,
-    "thumbnail": "https://picsum.photos/320/180?random=21",
-    "title": "Building a Portfolio with React",
-    "channelName": "Frontend Hero",
-    "channelAvatar": "https://picsum.photos/40/40?random=121",
-    "views": 56000,
-    "uploadDate": "1 week ago",
-    "duration": "1:10:47",
-    "isVerified": true
-  },
-  {
-    "id": 22,
-    "thumbnail": "https://picsum.photos/320/180?random=22",
-    "title": "Docker in 10 Minutes",
-    "channelName": "Container Kings",
-    "channelAvatar": "https://picsum.photos/40/40?random=122",
-    "views": 82000,
-    "uploadDate": "5 days ago",
-    "duration": "10:00",
-    "isVerified": false
-  },
-  {
-    "id": 23,
-    "thumbnail": "https://picsum.photos/320/180?random=23",
-    "title": "Vue vs React vs Angular: 2024 Comparison",
-    "channelName": "Dev Showdown",
-    "channelAvatar": "https://picsum.photos/40/40?random=123",
-    "views": 310000,
-    "uploadDate": "2 days ago",
-    "duration": "33:13",
-    "isVerified": true
-  },
-  {
-    "id": 24,
-    "thumbnail": "https://picsum.photos/320/180?random=24",
-    "title": "HTML Forms Full Guide",
-    "channelName": "Web Basics",
-    "channelAvatar": "https://picsum.photos/40/40?random=124",
-    "views": 47000,
-    "uploadDate": "3 days ago",
-    "duration": "24:05",
-    "isVerified": false
-  },
-  {
-    "id": 25,
-    "thumbnail": "https://picsum.photos/320/180?random=25",
-    "title": "React Native Crash Course",
-    "channelName": "Mobile Code Lab",
-    "channelAvatar": "https://picsum.photos/40/40?random=125",
-    "views": 129000,
-    "uploadDate": "6 days ago",
-    "duration": "1:15:20",
-    "isVerified": true
-  },
-  {
-    "id": 26,
-    "thumbnail": "https://picsum.photos/320/180?random=26",
-    "title": "Firebase Authentication Tutorial",
-    "channelName": "Auth Hacks",
-    "channelAvatar": "https://picsum.photos/40/40?random=126",
-    "views": 51000,
-    "uploadDate": "1 week ago",
-    "duration": "38:44",
-    "isVerified": false
-  },
-  {
-    "id": 27,
-    "thumbnail": "https://picsum.photos/320/180?random=27",
-    "title": "VS Code Tips and Tricks",
-    "channelName": "Dev Tools Daily",
-    "channelAvatar": "https://picsum.photos/40/40?random=127",
-    "views": 115000,
-    "uploadDate": "2 days ago",
-    "duration": "17:33",
-    "isVerified": true
-  },
-  {
-    "id": 28,
-    "thumbnail": "https://picsum.photos/320/180?random=28",
-    "title": "Top 10 VS Code Extensions 2024",
-    "channelName": "Code Productivity",
-    "channelAvatar": "https://picsum.photos/40/40?random=128",
-    "views": 87000,
-    "uploadDate": "4 days ago",
-    "duration": "11:49",
-    "isVerified": false
-  },
-  {
-    "id": 29,
-    "thumbnail": "https://picsum.photos/320/180?random=29",
-    "title": "Data Structures in JavaScript",
-    "channelName": "Algo Simplified",
-    "channelAvatar": "https://picsum.photos/40/40?random=129",
-    "views": 144000,
-    "uploadDate": "3 days ago",
-    "duration": "46:18",
-    "isVerified": true
-  },
-  {
-    "id": 30,
-    "thumbnail": "https://picsum.photos/320/180?random=30",
-    "title": "Intro to Machine Learning with Python",
-    "channelName": "ML Digest",
-    "channelAvatar": "https://picsum.photos/40/40?random=130",
-    "views": 222000,
-    "uploadDate": "1 week ago",
-    "duration": "1:25:55",
-    "isVerified": true
+    "duration": "8:17",
+    "isVerified": false,
+    "description": "The Smoking Tire meets up with Chris and Jorge from CarsForAGrand.com to see just how far $1,000 can go when looking for a car.The Smoking Tire meets up with Chris and Jorge from CarsForAGrand.com to see just how far $1,000 can go when looking for a car.",
+    "sources": [
+      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WhatCarCanYouGetForAGrand.mp4"
+    ]
   }
 ]
