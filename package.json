@@ -15,10 +15,14 @@
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
     "@tailwindcss/vite": "^4.1.11",
+    "@videojs/themes": "^1.0.1",
     "framer-motion": "^12.23.7",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "tailwindcss": "^4.1.11"
+    "tailwindcss": "^4.1.11",
+    "video.js": "^8.23.3",
+    "videojs-contrib-quality-levels": "^4.1.0",
+    "videojs-http-source-selector": "^1.1.6"
   },
   "devDependencies": {
     "@eslint/js": "^9.30.1",
