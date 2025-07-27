@@ -283,6 +283,7 @@ const VideoPlayer = ({ src, type = "video/mp4" }) => {
         if (type === "application/x-mpegURL")
           setupQualityControl(playerRef.current);
         setupControlLayout(playerRef.current);
+        setupKeyboardShortcuts(playerRef.current);
         addChapterMarkers(playerRef.current);
         enhanceProgressBarVisibility(playerRef.current);
       }, 0);
@@ -425,6 +426,79 @@ const VideoPlayer = ({ src, type = "video/mp4" }) => {
     });
   };
 
+  // Add keyboard shortcuts
+  const setupKeyboardShortcuts = (player) => {
+    player.ready(() => {
+      const handleKeyDown = (e) => {
+        // Only handle shortcuts if the video player is focused or no input elements are focused
+        const activeElement = document.activeElement;
+        const isInputFocused =
+          activeElement &&
+          (activeElement.tagName === "INPUT" ||
+            activeElement.tagName === "TEXTAREA" ||
+            activeElement.contentEditable === "true");
+
+        if (isInputFocused) return;
+
+        switch (e.key.toLowerCase()) {
+          case " ": // Space - play/pause
+          case "k": // K - play/pause
+            e.preventDefault();
+            if (player.paused()) {
+              player.play();
+            } else {
+              player.pause();
+            }
+            break;
+
+          case "f": // F - fullscreen
+            e.preventDefault();
+            if (player.isFullscreen()) {
+              player.exitFullscreen();
+            } else {
+              player.requestFullscreen();
+            }
+            break;
+
+          case "arrowleft": // Left arrow - back 5 seconds
+            e.preventDefault();
+            player.currentTime(Math.max(0, player.currentTime() - 5));
+            break;
+
+          case "arrowright": // Right arrow - forward 5 seconds
+            e.preventDefault();
+            player.currentTime(
+              Math.min(player.duration(), player.currentTime() + 5)
+            );
+            break;
+
+          case "j": // J - back 10 seconds
+            e.preventDefault();
+            player.currentTime(Math.max(0, player.currentTime() - 10));
+            break;
+
+          case "l": // L - forward 10 seconds
+            e.preventDefault();
+            player.currentTime(
+              Math.min(player.duration(), player.currentTime() + 10)
+            );
+            break;
+
+          case "m": // M - mute/unmute
+            e.preventDefault();
+            player.muted(!player.muted());
+            break;
+        }
+      };
+
+      // Add event listener to document for global shortcuts
+      document.addEventListener("keydown", handleKeyDown);
+
+      // Store the handler reference for cleanup
+      player.keyboardHandler = handleKeyDown;
+    });
+  };
+
   // Full implementation of createQualityButton with valid SVG path and menu
   const createQualityButton = (player, qualityLevels) => {
     const Button = videojs.getComponent("Button");
@@ -521,6 +595,13 @@ const VideoPlayer = ({ src, type = "video/mp4" }) => {
   useEffect(
     () => () => {
       if (playerRef.current) {
+        // Clean up keyboard event listener
+        if (playerRef.current.keyboardHandler) {
+          document.removeEventListener(
+            "keydown",
+            playerRef.current.keyboardHandler
+          );
+        }
         playerRef.current.dispose();
         playerRef.current = null;
       }

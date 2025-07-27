@@ -1,13 +1,9 @@
-import { SidebarProvider } from "../context/SidebarContext";
-import Basic_layout from "../layout/basic_layout";
-import VideoCard from "../components/VideoCard";
-import { SimpleGrid, Box, Spinner, Flex, Text } from "@chakra-ui/react";
+import MiniVideoCard from "./MiniVideoCard";
+import { Box, Spinner, Flex, Text, VStack } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import data_fetch from "../hooks/data_fetch";
 
-// Sample video data
-
-export default function HomePage() {
+export default function SideRecommendation() {
   const [isLoading, setIsLoading] = useState(true);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [allVideos, setAllVideos] = useState([]); // Store all fetched videos
@@ -78,10 +74,9 @@ export default function HomePage() {
       const windowHeight = window.innerHeight;
       const documentHeight = document.documentElement.scrollHeight;
       const scrollBottom = scrollTop + windowHeight;
-      const threshold = 300; // Increased threshold for easier triggering
 
-      // Check if user scrolled near bottom
-      if (scrollBottom >= documentHeight - threshold) {
+      // Only load when user reaches the exact bottom (no threshold)
+      if (scrollBottom >= documentHeight) {
         loadMoreVideos();
       }
     };
@@ -98,9 +93,6 @@ export default function HomePage() {
 
     window.addEventListener("scroll", throttledScroll, { passive: true });
 
-    // Also trigger on initial load to check if content is short
-    setTimeout(handleScroll, 1000);
-
     return () => {
       window.removeEventListener("scroll", throttledScroll);
       if (timeoutId) clearTimeout(timeoutId);
@@ -108,73 +100,56 @@ export default function HomePage() {
   }, [isLoading, isLoadingMore, allVideos.length]);
 
   const handleVideoClick = (videoId) => {
-    console.log("Video clicked:", videoId);
+    console.log("Side recommendation video clicked:", videoId);
   };
 
   const handleChannelClick = (channelName) => {
-    console.log("Channel clicked:", channelName);
-  };
-
-  const handleMoreClick = (videoId) => {
-    console.log("More options clicked:", videoId);
+    console.log("Side recommendation channel clicked:", channelName);
   };
 
   return (
-    <SidebarProvider>
-      <Basic_layout>
-        <Box p="20px" minH="100vh">
-          <SimpleGrid
-            columns={{ base: 1, sm: 1, md: 2, lg: 3, xl: 4 }}
-            spacing="20px"
-            gap={4}
-            w="full">
-            {isLoading
-              ? // Show initial loading cards
-                Array.from({ length: 10 }, (_, index) => (
-                  <VideoCard key={`loading-${index}`} isLoading={true} />
-                ))
-              : // Show actual video cards
-                displayedVideos.map((video) => (
-                  <VideoCard
-                    key={video.id}
-                    thumbnail={video.thumbnail}
-                    title={video.title}
-                    channelName={video.channelName}
-                    channelAvatar={video.channelAvatar}
-                    views={video.views}
-                    uploadDate={video.uploadDate}
-                    duration={video.duration}
-                    isVerified={video.isVerified}
-                    onVideoClick={() => handleVideoClick(video.id)}
-                    onChannelClick={() => handleChannelClick(video.channelName)}
-                    onMoreClick={() => handleMoreClick(video.id)}
-                  />
-                ))}
+    <Box pt="24px" pr="24px" bg="#121212" minH="100vh">
+      {/* Videos List */}
+      <VStack spacing="8px" w="full" align="stretch">
+        {isLoading
+          ? // Show initial loading cards
+            Array.from({ length: 10 }, (_, index) => (
+              <MiniVideoCard key={`loading-${index}`} isLoading={true} />
+            ))
+          : // Show actual video cards
+            displayedVideos.map((video) => (
+              <MiniVideoCard
+                key={video.id}
+                thumbnail={video.thumbnail}
+                title={video.title}
+                channelName={video.channelName}
+                views={`${Math.floor(video.views / 1000)}K views`}
+                uploadDate={video.uploadDate}
+                duration={video.duration}
+                isVerified={video.isVerified}
+                onVideoClick={() => handleVideoClick(video.id)}
+                onChannelClick={() => handleChannelClick(video.channelName)}
+              />
+            ))}
 
-            {/* Loading more cards */}
-            {isLoadingMore && (
-              <Box gridColumn="1 / -1" py={8}>
-                <Flex
-                  direction="column"
-                  align="center"
-                  justify="center"
-                  gap={4}>
-                  <Spinner
-                    thickness="4px"
-                    speed="0.8s"
-                    emptyColor="gray.200"
-                    color="red.500"
-                    size="xl"
-                  />
-                  <Text color="gray.600" fontSize="sm">
-                    Loading more videos...
-                  </Text>
-                </Flex>
-              </Box>
-            )}
-          </SimpleGrid>
-        </Box>
-      </Basic_layout>
-    </SidebarProvider>
+        {/* Loading more cards */}
+        {isLoadingMore && (
+          <Box py={4}>
+            <Flex direction="column" align="center" justify="center" gap={2}>
+              <Spinner
+                thickness="2px"
+                speed="0.8s"
+                emptyColor="gray.600"
+                color="red.500"
+                size="md"
+              />
+              <Text color="gray.400" fontSize="12px">
+                Loading more videos...
+              </Text>
+            </Flex>
+          </Box>
+        )}
+      </VStack>
+    </Box>
   );
 }
