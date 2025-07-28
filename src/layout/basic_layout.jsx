@@ -1,8 +1,9 @@
 import { useSidebar } from "../context/SidebarContext";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
+import { forwardRef } from "react";
 
-export default function Basic_layout({ children }) {
+const Basic_layout = forwardRef(({ children }, ref) => {
   const { isCollapsed, collapseSidebar } = useSidebar();
 
   return (
@@ -39,6 +40,7 @@ export default function Basic_layout({ children }) {
 
         {/* Main content - Full width on mobile, remaining width on desktop */}
         <main
+          ref={ref}
           className={`w-full ${
             isCollapsed
               ? "sm:w-[95%] md:w-[96%] lg:w-[95%]"
@@ -49,4 +51,8 @@ export default function Basic_layout({ children }) {
       </div>
     </div>
   );
-}
+});
+
+Basic_layout.displayName = "Basic_layout";
+
+export default Basic_layout;

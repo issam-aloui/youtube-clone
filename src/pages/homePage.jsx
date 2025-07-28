@@ -2,7 +2,7 @@ import { SidebarProvider } from "../context/SidebarContext";
 import Basic_layout from "../layout/basic_layout";
 import VideoCard from "../components/VideoCard";
 import { SimpleGrid, Box, Spinner, Flex, Text } from "@chakra-ui/react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import data_fetch from "../hooks/data_fetch";
 
 // Sample video data
@@ -13,27 +13,34 @@ export default function HomePage() {
   const [allVideos, setAllVideos] = useState([]); // Store all fetched videos
   const [displayedVideos, setDisplayedVideos] = useState([]); // Currently displayed videos
   const [page, setPage] = useState(1);
+  const scrollContainerRef = useRef(null);
 
   const VIDEOS_PER_PAGE = 10;
 
   // Fetch initial video data
   useEffect(() => {
-    try {
-      let firstBatch;
-      data_fetch("/data/videos.json").then((data) => {
-        setAllVideos(data);
-        firstBatch = data.slice(0, VIDEOS_PER_PAGE);
-        setDisplayedVideos(firstBatch);
-      });
-      setIsLoading(false);
-      // Show first 10 videos
-    } catch (error) {
-      console.error("Error fetching video data:", error);
-      setAllVideos([]);
-      setDisplayedVideos([]);
-    } finally {
-      setIsLoading(false);
-    }
+    const fetchInitialData = async () => {
+      try {
+        const data = await data_fetch("/data/videos.json");
+        if (data && Array.isArray(data)) {
+          setAllVideos(data);
+          const firstBatch = data.slice(0, VIDEOS_PER_PAGE);
+          setDisplayedVideos(firstBatch);
+        } else {
+          console.error("Invalid data format received");
+          setAllVideos([]);
+          setDisplayedVideos([]);
+        }
+      } catch (error) {
+        console.error("Error fetching video data:", error);
+        setAllVideos([]);
+        setDisplayedVideos([]);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchInitialData();
   }, []);
 
   // Load more videos (reusing existing ones)
@@ -68,20 +75,22 @@ export default function HomePage() {
 
   // Scroll detection
   useEffect(() => {
+    const scrollContainer = scrollContainerRef.current;
+    if (!scrollContainer || isLoading || allVideos.length === 0) {
+      return;
+    }
+
     const handleScroll = () => {
-      if (isLoading || isLoadingMore) {
+      if (isLoadingMore) {
         return;
       }
 
-      const scrollTop =
-        window.pageYOffset || document.documentElement.scrollTop;
-      const windowHeight = window.innerHeight;
-      const documentHeight = document.documentElement.scrollHeight;
-      const scrollBottom = scrollTop + windowHeight;
-      const threshold = 300; // Increased threshold for easier triggering
+      const { scrollTop, scrollHeight, clientHeight } = scrollContainer;
+      const scrollBottom = scrollTop + clientHeight;
+      const threshold = 100; // Distance from bottom to trigger loading
 
-      // Check if user scrolled near bottom
-      if (scrollBottom >= documentHeight - threshold) {
+      // Check if user scrolled near bottom of the scrollable container
+      if (scrollBottom >= scrollHeight - threshold) {
         loadMoreVideos();
       }
     };
@@ -93,19 +102,18 @@ export default function HomePage() {
       timeoutId = setTimeout(() => {
         handleScroll();
         timeoutId = null;
-      }, 100);
+      }, 200);
     };
 
-    window.addEventListener("scroll", throttledScroll, { passive: true });
-
-    // Also trigger on initial load to check if content is short
-    setTimeout(handleScroll, 1000);
+    scrollContainer.addEventListener("scroll", throttledScroll, {
+      passive: true,
+    });
 
     return () => {
-      window.removeEventListener("scroll", throttledScroll);
+      scrollContainer.removeEventListener("scroll", throttledScroll);
       if (timeoutId) clearTimeout(timeoutId);
     };
-  }, [isLoading, isLoadingMore, allVideos.length]);
+  }, [isLoading, isLoadingMore, allVideos.length, page]);
 
   const handleVideoClick = (videoId) => {
     console.log("Video clicked:", videoId);
@@ -121,7 +129,7 @@ export default function HomePage() {
 
   return (
     <SidebarProvider>
-      <Basic_layout>
+      <Basic_layout ref={scrollContainerRef}>
         <Box p="20px" minH="100vh">
           <SimpleGrid
             columns={{ base: 1, sm: 1, md: 2, lg: 3, xl: 4 }}

@@ -2,50 +2,11 @@ import Basic_layout from "../layout/basic_layout";
 import VideoPlayer from "../components/VideoPlayer";
 import SideRecommendation from "../components/SideRecommendation";
 import IconButton from "../components/IconButton";
+import CommentSection from "../components/CommentSection";
 import { SidebarProvider } from "../context/SidebarContext";
+import { useFormatNumber, useFormatTimeAgo } from "../hooks/formatters";
 import { Flex, Box, Text, Button, HStack, VStack } from "@chakra-ui/react";
-import { useState } from "react";
-
-// Number formatter function
-const formatNumber = (num) => {
-  if (!num) return "0";
-  const number = typeof num === "string" ? parseInt(num) : num;
-
-  if (number >= 1000000) {
-    return (number / 1000000).toFixed(1).replace(/\.0$/, "") + "M";
-  }
-  if (number >= 1000) {
-    return (number / 1000).toFixed(1).replace(/\.0$/, "") + "K";
-  }
-  return number.toString();
-};
-
-// Time formatter function
-const formatTimeAgo = (dateString) => {
-  if (!dateString) return "Unknown";
-
-  const date = new Date(dateString);
-  const now = new Date();
-  const diffInSeconds = Math.floor((now - date) / 1000);
-
-  const intervals = [
-    { label: "year", seconds: 31536000 },
-    { label: "month", seconds: 2592000 },
-    { label: "week", seconds: 604800 },
-    { label: "day", seconds: 86400 },
-    { label: "hour", seconds: 3600 },
-    { label: "minute", seconds: 60 },
-  ];
-
-  for (const interval of intervals) {
-    const count = Math.floor(diffInSeconds / interval.seconds);
-    if (count >= 1) {
-      return `${count} ${interval.label}${count > 1 ? "s" : ""} ago`;
-    }
-  }
-
-  return "Just now";
-};
+import { useState, useRef } from "react";
 
 export default function WatchPage({
   videoUrl,
@@ -59,21 +20,192 @@ export default function WatchPage({
   uploadDate,
 }) {
   const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
+  const [videoError, setVideoError] = useState(false);
+  const watchPageRef = useRef(null);
+  const formatNumber = useFormatNumber();
+  const formatTimeAgo = useFormatTimeAgo();
+
+  // Check for critical missing data
+  const isMissingCriticalData = !videoUrl || !title;
+
+  // Provide fallbacks for all data
+  const fallbackData = {
+    videoUrl: videoUrl || "",
+    title: title || "Video Title Unavailable",
+    channelName: channelName || "Unknown Channel",
+    subscriberCount: subscriberCount || 0, // Keep as number
+    description: description || "No description available for this video.",
+    likes: likes || 0,
+    dislikes: dislikes || 0,
+    views: views || 0,
+    uploadDate: uploadDate || new Date().toISOString(),
+  };
+
+  // Check which data is missing (for optional warnings)
+  const missingOptionalData = {
+    channelName: !channelName,
+    subscriberCount: !subscriberCount && subscriberCount !== 0,
+    description: !description,
+    likes: !likes && likes !== 0,
+    dislikes: !dislikes && dislikes !== 0,
+    views: !views && views !== 0,
+    uploadDate: !uploadDate,
+  };
+
+  const hasMissingOptionalData =
+    Object.values(missingOptionalData).some(Boolean);
 
   // Use provided description or default message
-  const videoDescription =
-    description || "No description added by the channel owner.";
+  const videoDescription = fallbackData.description;
+
+  // If critical data is missing, show error state
+  if (isMissingCriticalData) {
+    return (
+      <SidebarProvider>
+        <Basic_layout>
+          <Flex
+            direction="column"
+            minH="100vh"
+            justify="center"
+            align="center"
+            p="24px">
+            <Box
+              bg="red.900"
+              borderColor="red.500"
+              border="1px solid"
+              borderRadius="12px"
+              p="32px"
+              maxW="500px"
+              textAlign="center">
+              {/* Error Icon */}
+              <Box
+                w="60px"
+                h="60px"
+                bg="red.500"
+                borderRadius="50%"
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+                mx="auto"
+                mb="16px">
+                <Text fontSize="24px" color="white" fontWeight="bold">
+                  ⚠️
+                </Text>
+              </Box>
+
+              {/* Error Title */}
+              <Text fontSize="lg" fontWeight="600" color="white" mb="8px">
+                Video Not Available!
+              </Text>
+
+              {/* Error Description */}
+              <Text fontSize="sm" color="gray.300" mb="24px" lineHeight="1.5">
+                {!videoUrl && !title
+                  ? "Both video URL and title are missing. Please check the video link."
+                  : !videoUrl
+                  ? "Video URL is missing. Cannot load the video."
+                  : "Video title is missing. Cannot display video information."}
+              </Text>
+
+              {/* Go Back Button */}
+              <Button
+                colorScheme="red"
+                variant="outline"
+                size="md"
+                color="white"
+                onClick={() => window.history.back()}>
+                Go Back
+              </Button>
+            </Box>
+          </Flex>
+        </Basic_layout>
+      </SidebarProvider>
+    );
+  }
+
   return (
     <SidebarProvider>
-      <Basic_layout>
+      <Basic_layout ref={watchPageRef}>
         <Flex direction="row" minH="100vh">
+          {/* Optional Data Warning */}
+          {hasMissingOptionalData && (
+            <Box
+              position="fixed"
+              top="70px"
+              right="20px"
+              zIndex="1000"
+              bg="orange.500"
+              color="white"
+              px="12px"
+              py="6px"
+              borderRadius="8px"
+              fontSize="12px"
+              fontWeight="500"
+              boxShadow="0 2px 8px rgba(0,0,0,0.3)"
+              opacity="0.9"
+              cursor="pointer"
+              title={`Missing: ${Object.entries(missingOptionalData)
+                .filter(([_, isMissing]) => isMissing)
+                .map(([key, _]) => key)
+                .join(", ")}`}>
+              ⚠️ Some video data is missing
+            </Box>
+          )}
+
           {/* Video Player Section - Left Side */}
-          <Box w="75%" p="24px" bg="black">
-            <VideoPlayer src={videoUrl} type="application/x-mpegURL" />
+          <Box w="75%" p="24px" fontFamily="Roboto, sans-serif">
+            {/* Video Player with Error Handling */}
+            {videoError ? (
+              <Box
+                w="100%"
+                h="400px"
+                bg="gray.900"
+                borderRadius="12px"
+                display="flex"
+                flexDirection="column"
+                alignItems="center"
+                justifyContent="center"
+                border="1px solid"
+                borderColor="gray.700">
+                <Text fontSize="18px" color="white" mb="8px" fontWeight="600">
+                  Video Unavailable
+                </Text>
+                <Text
+                  fontSize="14px"
+                  color="gray.400"
+                  textAlign="center"
+                  mb="16px">
+                  This video cannot be played. It may be unavailable or there
+                  might be a connection issue.
+                </Text>
+                <Button
+                  size="sm"
+                  colorScheme="red"
+                  variant="outline"
+                  onClick={() => setVideoError(false)}>
+                  Try Again
+                </Button>
+              </Box>
+            ) : (
+              <Box
+                onError={() => setVideoError(true)}
+                style={{ width: "100%" }}>
+                <VideoPlayer
+                  src={fallbackData.videoUrl}
+                  type="application/x-mpegURL"
+                />
+              </Box>
+            )}
+
             <Box mt="16px" color="white">
               {/* Video Title */}
-              <Text fontSize="20px" fontWeight="600" mb="12px" lineHeight="1.3">
-                {title || "I Mastered Minecraft Combat"}
+              <Text
+                fontSize="20px"
+                fontWeight="600"
+                mb="12px"
+                lineHeight="1.3"
+                fontFamily="Roboto, sans-serif">
+                {fallbackData.title}
               </Text>
 
               {/* Channel Info and Action Buttons */}
@@ -92,7 +224,7 @@ export default function WatchPage({
                       justifyContent="center">
                       <img
                         src="/src/assets/images/profilePicture.jpg"
-                        alt={channelName || "Wermbu"}
+                        alt={fallbackData.channelName}
                         style={{
                           width: "100%",
                           height: "100%",
@@ -101,8 +233,8 @@ export default function WatchPage({
                         }}
                         onError={(e) => {
                           e.target.style.display = "none";
-                          e.target.parentElement.innerHTML = (channelName ||
-                            "W")[0];
+                          e.target.parentElement.innerHTML =
+                            fallbackData.channelName[0];
                           e.target.parentElement.style.color = "white";
                           e.target.parentElement.style.fontSize = "16px";
                           e.target.parentElement.style.fontWeight = "600";
@@ -113,8 +245,12 @@ export default function WatchPage({
                     {/* Channel Name and Subscribers */}
                     <VStack align="start" spacing="0">
                       <HStack spacing="4px">
-                        <Text fontSize="16px" fontWeight="600" color="white">
-                          {channelName || "Wermbu"}
+                        <Text
+                          fontSize="16px"
+                          fontWeight="600"
+                          color="white"
+                          fontFamily="Roboto, sans-serif">
+                          {fallbackData.channelName}
                         </Text>
                         {/* Verified Badge */}
                         <Box
@@ -124,8 +260,11 @@ export default function WatchPage({
                           borderRadius="50%"
                         />
                       </HStack>
-                      <Text fontSize="12px" color="gray.400">
-                        {subscriberCount || "1.02M subscribers"}
+                      <Text
+                        fontSize="12px"
+                        color="gray.400"
+                        fontFamily="Roboto, sans-serif">
+                        {formatNumber(fallbackData.subscriberCount)} subscribers
                       </Text>
                     </VStack>
 
@@ -155,7 +294,7 @@ export default function WatchPage({
                       overflow="hidden">
                       <IconButton
                         icon="/src/assets/icons/white_icons/liked.svg"
-                        text={formatNumber(likes) || "0"}
+                        text={formatNumber(fallbackData.likes)}
                         bg="transparent"
                         color="white"
                         fontSize="14px"
@@ -168,7 +307,7 @@ export default function WatchPage({
                       <Box w="1px" h="24px" bg="gray.600" />
                       <IconButton
                         icon="/src/assets/icons/white_icons/DisLiked.svg"
-                        text={formatNumber(dislikes) || "0"}
+                        text={formatNumber(fallbackData.dislikes)}
                         bg="transparent"
                         color="white"
                         fontSize="14px"
@@ -263,28 +402,38 @@ export default function WatchPage({
               <Box
                 mt="16px"
                 p="12px"
-                bg="gray.900"
+                bg="#272727"
                 borderRadius="12px"
                 position="relative"
                 overflow="hidden"
                 maxH={isDescriptionExpanded ? "none" : "80px"}
                 transition="max-height 0.3s ease"
                 cursor={!isDescriptionExpanded ? "pointer" : "default"}
-                _hover={!isDescriptionExpanded ? { bg: "gray.800" } : {}}
-                onClick={!isDescriptionExpanded ? () => setIsDescriptionExpanded(true) : undefined}
-              >
+                _hover={!isDescriptionExpanded ? { bg: "#323232" } : {}}
+                onClick={
+                  !isDescriptionExpanded
+                    ? () => setIsDescriptionExpanded(true)
+                    : undefined
+                }>
                 {/* Video stats (views and upload date) */}
-                <Text fontSize="14px" color="white" fontWeight="600" mb="8px">
-                  {formatNumber(views) || "253K"} views •{" "}
-                  {formatTimeAgo(uploadDate) || "7 days ago"}
+
+                <Text
+                  fontSize="14px"
+                  color="#ffffff"
+                  fontWeight="600"
+                  mb="8px"
+                  fontFamily="Roboto, sans-serif">
+                  {formatNumber(fallbackData.views)} views •{" "}
+                  {formatTimeAgo(fallbackData.uploadDate)}
                 </Text>
 
                 <Text
                   fontSize="14px"
-                  color="gray.300"
+                  color="#ffffff"
                   lineHeight="1.4"
                   whiteSpace="pre-wrap"
-                  overflow="hidden">
+                  overflow="hidden"
+                  fontFamily="Roboto, sans-serif">
                   {videoDescription}
                 </Text>
 
@@ -297,20 +446,20 @@ export default function WatchPage({
                       left="0"
                       right="0"
                       height="20px"
-                      background="linear-gradient(transparent, #1A202C)"
+                      background="linear-gradient(transparent, #272727)"
                       pointerEvents="none"
                     />
                     {/* Show more indicator */}
                     <Text
                       fontSize="14px"
-                      color="white"
+                      color="#ffffff"
                       fontWeight="600"
                       mt="8px"
                       position="relative"
                       zIndex="1"
-                      bg="gray.900"
+                      bg="#272727"
                       pointerEvents="none"
-                    >
+                      fontFamily="Roboto, sans-serif">
                       ...more
                     </Text>
                   </>
@@ -320,7 +469,7 @@ export default function WatchPage({
                 {isDescriptionExpanded && (
                   <Text
                     fontSize="14px"
-                    color="white"
+                    color="#ffffff"
                     fontWeight="600"
                     mt="16px"
                     cursor="pointer"
@@ -329,18 +478,21 @@ export default function WatchPage({
                       setIsDescriptionExpanded(false);
                     }}
                     _hover={{ textDecoration: "underline" }}
-                  >
+                    fontFamily="Roboto, sans-serif">
                     Show less
                   </Text>
                 )}
               </Box>
 
+              {/* Comments Section */}
+              <CommentSection />
+
               {/* Remove duplicate description section */}
             </Box>
           </Box>
           {/* Side Recommendation Section - Right Side */}
-          <Box w="25%" h="100vh" overflowY="auto" bg="#121212">
-            <SideRecommendation />
+          <Box w="25%" h="100vh" bg="#121212">
+            <SideRecommendation scrollContainerRef={watchPageRef} />
           </Box>
         </Flex>
       </Basic_layout>

@@ -9,6 +9,7 @@ import {
   SkeletonText,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import { useFormatViews } from "../hooks/formatters";
 
 const MiniVideoCard = ({
   thumbnail,
@@ -23,6 +24,7 @@ const MiniVideoCard = ({
   onChannelClick,
 }) => {
   const [imageLoading, setImageLoading] = useState(true);
+  const formatViews = useFormatViews();
 
   // Loading skeleton
   if (isLoading) {
@@ -155,7 +157,7 @@ const MiniVideoCard = ({
           </HStack>
 
           <Text fontSize="13px" color="#aaaaaa" noOfLines={1}>
-            {views} • {uploadDate}
+            {formatViews(views)} • {uploadDate}
           </Text>
         </VStack>
       </VStack>

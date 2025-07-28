@@ -8,6 +8,7 @@ import {
   SkeletonText,
   SkeletonCircle,
 } from "@chakra-ui/react";
+import { useFormatViews } from "../hooks/formatters";
 
 const VideoCard = ({
   thumbnail,
@@ -25,20 +26,7 @@ const VideoCard = ({
 }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
-
-  const formatViews = (count) => {
-    try {
-      if (count >= 1000000) {
-        return `${(count / 1000000).toFixed(1)}M`;
-      } else if (count >= 1000) {
-        return `${Math.floor(count / 1000)}K`;
-      }
-      return count.toString();
-    } catch (error) {
-      console.error("Error formatting views:", error);
-      return "0";
-    }
-  };
+  const formatViews = useFormatViews();
 
   // Loading skeleton
   if (isLoading) {

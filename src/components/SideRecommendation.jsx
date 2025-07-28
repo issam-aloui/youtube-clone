@@ -1,9 +1,9 @@
 import MiniVideoCard from "./MiniVideoCard";
 import { Box, Spinner, Flex, Text, VStack } from "@chakra-ui/react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import data_fetch from "../hooks/data_fetch";
 
-export default function SideRecommendation() {
+export default function SideRecommendation({ scrollContainerRef }) {
   const [isLoading, setIsLoading] = useState(true);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [allVideos, setAllVideos] = useState([]); // Store all fetched videos
@@ -14,31 +14,37 @@ export default function SideRecommendation() {
 
   // Fetch initial video data
   useEffect(() => {
-    try {
-      let firstBatch;
-      data_fetch("/data/videos.json").then((data) => {
-        setAllVideos(data);
-        firstBatch = data.slice(0, VIDEOS_PER_PAGE);
-        setDisplayedVideos(firstBatch);
-      });
-      setIsLoading(false);
-      // Show first 10 videos
-    } catch (error) {
-      console.error("Error fetching video data:", error);
-      setAllVideos([]);
-      setDisplayedVideos([]);
-    } finally {
-      setIsLoading(false);
-    }
+    const fetchInitialData = async () => {
+      try {
+        const data = await data_fetch("/data/videos.json");
+        if (data && Array.isArray(data)) {
+          setAllVideos(data);
+          const firstBatch = data.slice(0, VIDEOS_PER_PAGE);
+          setDisplayedVideos(firstBatch);
+        } else {
+          console.error("Invalid data format received");
+          setAllVideos([]);
+          setDisplayedVideos([]);
+        }
+      } catch (error) {
+        console.error("Error fetching video data:", error);
+        setAllVideos([]);
+        setDisplayedVideos([]);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchInitialData();
   }, []);
 
   // Load more videos (reusing existing ones)
   const loadMoreVideos = () => {
-    if (isLoadingMore || allVideos.length === 0) return;
+    if (isLoadingMore || allVideos.length === 0 || isLoading) return;
 
     setIsLoadingMore(true);
 
-    // Simulate loading delay - 2 seconds for more noticeable loading
+    // Simulate loading delay - 1 second for better UX
     setTimeout(() => {
       const startIndex = (page * VIDEOS_PER_PAGE) % allVideos.length;
       const newVideos = [];
@@ -51,7 +57,7 @@ export default function SideRecommendation() {
         // Create a new video with unique ID to avoid key conflicts
         const newVideo = {
           ...originalVideo,
-          id: `${originalVideo.id}-page-${page}-${i}`, // More unique ID
+          id: `${originalVideo.id}-side-page-${page}-${i}`, // More unique ID for side recommendations
         };
         newVideos.push(newVideo);
       }
@@ -59,24 +65,32 @@ export default function SideRecommendation() {
       setDisplayedVideos((prev) => [...prev, ...newVideos]);
       setPage((prev) => prev + 1);
       setIsLoadingMore(false);
-    }, 2000); // 2 seconds loading time
+    }, 1000); // 1 second loading time
   };
 
-  // Scroll detection
+  // Scroll detection using external scroll container
   useEffect(() => {
+    // If no scroll container is provided, don't set up scroll detection
+    if (!scrollContainerRef) {
+      return;
+    }
+
+    const scrollContainer = scrollContainerRef?.current;
+    if (!scrollContainer || isLoading || allVideos.length === 0) {
+      return;
+    }
+
     const handleScroll = () => {
-      if (isLoading || isLoadingMore) {
+      if (isLoadingMore) {
         return;
       }
 
-      const scrollTop =
-        window.pageYOffset || document.documentElement.scrollTop;
-      const windowHeight = window.innerHeight;
-      const documentHeight = document.documentElement.scrollHeight;
-      const scrollBottom = scrollTop + windowHeight;
+      const { scrollTop, scrollHeight, clientHeight } = scrollContainer;
+      const scrollBottom = scrollTop + clientHeight;
+      const threshold = 100; // Distance from bottom to trigger loading
 
-      // Only load when user reaches the exact bottom (no threshold)
-      if (scrollBottom >= documentHeight) {
+      // Check if user scrolled near bottom of the scrollable container
+      if (scrollBottom >= scrollHeight - threshold) {
         loadMoreVideos();
       }
     };
@@ -88,16 +102,18 @@ export default function SideRecommendation() {
       timeoutId = setTimeout(() => {
         handleScroll();
         timeoutId = null;
-      }, 100);
+      }, 200);
     };
 
-    window.addEventListener("scroll", throttledScroll, { passive: true });
+    scrollContainer.addEventListener("scroll", throttledScroll, {
+      passive: true,
+    });
 
     return () => {
-      window.removeEventListener("scroll", throttledScroll);
+      scrollContainer.removeEventListener("scroll", throttledScroll);
       if (timeoutId) clearTimeout(timeoutId);
     };
-  }, [isLoading, isLoadingMore, allVideos.length]);
+  }, [isLoading, isLoadingMore, allVideos.length, page, scrollContainerRef]);
 
   const handleVideoClick = (videoId) => {
     console.log("Side recommendation video clicked:", videoId);
