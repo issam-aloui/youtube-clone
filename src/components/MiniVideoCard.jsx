@@ -9,7 +9,11 @@ import {
   SkeletonText,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import { useFormatViews } from "../hooks/formatters";
+import {
+  useFormatViews,
+  useFormatDuration,
+  useFormatTimeAgo,
+} from "../hooks/formatters";
 
 const MiniVideoCard = ({
   thumbnail,
@@ -25,6 +29,8 @@ const MiniVideoCard = ({
 }) => {
   const [imageLoading, setImageLoading] = useState(true);
   const formatViews = useFormatViews();
+  const formatDuration = useFormatDuration();
+  const formatTimeAgo = useFormatTimeAgo();
 
   // Loading skeleton
   if (isLoading) {
@@ -102,7 +108,7 @@ const MiniVideoCard = ({
             borderRadius="4px"
             fontSize="xs"
             fontWeight="medium">
-            {duration}
+            {formatDuration(duration)}
           </Box>
         )}
       </Box>
@@ -157,7 +163,7 @@ const MiniVideoCard = ({
           </HStack>
 
           <Text fontSize="13px" color="#aaaaaa" noOfLines={1}>
-            {formatViews(views)} • {uploadDate}
+            {formatViews(views)} • {formatTimeAgo(uploadDate)}
           </Text>
         </VStack>
       </VStack>

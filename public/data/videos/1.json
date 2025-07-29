@@ -1,0 +1,13 @@
+{
+  "id": 1,
+  "thumbnail": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg",
+  "title": "Big Buck Bunny - Adventures in the Forest",
+  "channelName": "Blender Studios",
+  "channelAvatar": "https://i.pravatar.cc/150?img=1",
+  "views": 2456789,
+  "uploadDate": "2024-01-15",
+  "duration": 634,
+  "isVerified": true,
+  "description": "Join Big Buck Bunny on an amazing adventure through the enchanted forest. This award-winning animation showcases stunning visuals and heartwarming storytelling that will captivate audiences of all ages. Created using open-source Blender software.",
+  "videoUrl": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
+}

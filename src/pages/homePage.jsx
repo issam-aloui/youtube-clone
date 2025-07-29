@@ -3,9 +3,8 @@ import Basic_layout from "../layout/basic_layout";
 import VideoCard from "../components/VideoCard";
 import { SimpleGrid, Box, Spinner, Flex, Text } from "@chakra-ui/react";
 import { useState, useEffect, useRef } from "react";
-import data_fetch from "../hooks/data_fetch";
-
-// Sample video data
+import { useNavigate } from "react-router-dom";
+import { loadAllVideos } from "../hooks/videoDataLoader";
 
 export default function HomePage() {
   const [isLoading, setIsLoading] = useState(true);
@@ -14,6 +13,7 @@ export default function HomePage() {
   const [displayedVideos, setDisplayedVideos] = useState([]); // Currently displayed videos
   const [page, setPage] = useState(1);
   const scrollContainerRef = useRef(null);
+  const navigate = useNavigate();
 
   const VIDEOS_PER_PAGE = 10;
 
@@ -21,7 +21,7 @@ export default function HomePage() {
   useEffect(() => {
     const fetchInitialData = async () => {
       try {
-        const data = await data_fetch("/data/videos.json");
+        const data = await loadAllVideos();
         if (data && Array.isArray(data)) {
           setAllVideos(data);
           const firstBatch = data.slice(0, VIDEOS_PER_PAGE);
@@ -116,7 +116,7 @@ export default function HomePage() {
   }, [isLoading, isLoadingMore, allVideos.length, page]);
 
   const handleVideoClick = (videoId) => {
-    console.log("Video clicked:", videoId);
+    navigate(`/watch/${videoId}`);
   };
 
   const handleChannelClick = (channelName) => {

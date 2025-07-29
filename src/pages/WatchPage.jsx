@@ -9,6 +9,7 @@ import { Flex, Box, Text, Button, HStack, VStack } from "@chakra-ui/react";
 import { useState, useRef } from "react";
 
 export default function WatchPage({
+  videoId,
   videoUrl,
   title,
   channelName,
@@ -492,7 +493,10 @@ export default function WatchPage({
           </Box>
           {/* Side Recommendation Section - Right Side */}
           <Box w="25%" h="100vh" bg="#121212">
-            <SideRecommendation scrollContainerRef={watchPageRef} />
+            <SideRecommendation
+              scrollContainerRef={watchPageRef}
+              currentVideoId={videoId}
+            />
           </Box>
         </Flex>
       </Basic_layout>

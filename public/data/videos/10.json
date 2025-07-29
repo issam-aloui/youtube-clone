@@ -1,0 +1,13 @@
+{
+  "id": 10,
+  "thumbnail": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=450&fit=crop",
+  "title": "Home Cooking Masterclass - French Cuisine",
+  "channelName": "ChefMarie",
+  "channelAvatar": "https://i.pravatar.cc/150?img=10",
+  "views": 987654,
+  "uploadDate": "2024-02-25T12:45:00Z",
+  "duration": 1533,
+  "isVerified": true,
+  "description": "Master the art of French cooking from the comfort of your own kitchen! Learn professional techniques for creating restaurant-quality dishes including perfect soufflés, coq au vin, and crème brûlée.",
+  "videoUrl": "https://demo.unified-streaming.com/k8s/features/stable/video/tears-of-steel/tears-of-steel.ism/.m3u8"
+}

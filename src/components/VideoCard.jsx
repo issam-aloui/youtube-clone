@@ -8,7 +8,11 @@ import {
   SkeletonText,
   SkeletonCircle,
 } from "@chakra-ui/react";
-import { useFormatViews } from "../hooks/formatters";
+import {
+  useFormatViews,
+  useFormatDuration,
+  useFormatTimeAgo,
+} from "../hooks/formatters";
 
 const VideoCard = ({
   thumbnail,
@@ -27,6 +31,8 @@ const VideoCard = ({
   const [isHovered, setIsHovered] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const formatViews = useFormatViews();
+  const formatDuration = useFormatDuration();
+  const formatTimeAgo = useFormatTimeAgo();
 
   // Loading skeleton
   if (isLoading) {
@@ -107,7 +113,7 @@ const VideoCard = ({
             borderRadius="6px"
             fontSize="12px"
             fontWeight="600">
-            {duration}
+            {formatDuration(duration)}
           </Box>
         )}
       </Box>
@@ -183,7 +189,7 @@ const VideoCard = ({
 
           {/* Views and Upload Date */}
           <Text fontSize="13px" color="#aaaaaa" noOfLines={1}>
-            {formatViews(views)} views • {uploadDate}
+            {formatViews(views)} views • {formatTimeAgo(uploadDate)}
           </Text>
         </Box>
 

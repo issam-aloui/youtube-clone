@@ -1,14 +1,19 @@
 import MiniVideoCard from "./MiniVideoCard";
 import { Box, Spinner, Flex, Text, VStack } from "@chakra-ui/react";
 import { useState, useEffect, useRef } from "react";
-import data_fetch from "../hooks/data_fetch";
+import { useNavigate } from "react-router-dom";
+import { loadAllVideos } from "../hooks/videoDataLoader";
 
-export default function SideRecommendation({ scrollContainerRef }) {
+export default function SideRecommendation({
+  scrollContainerRef,
+  currentVideoId,
+}) {
   const [isLoading, setIsLoading] = useState(true);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [allVideos, setAllVideos] = useState([]); // Store all fetched videos
   const [displayedVideos, setDisplayedVideos] = useState([]); // Currently displayed videos
   const [page, setPage] = useState(1);
+  const navigate = useNavigate();
 
   const VIDEOS_PER_PAGE = 10;
 
@@ -16,10 +21,15 @@ export default function SideRecommendation({ scrollContainerRef }) {
   useEffect(() => {
     const fetchInitialData = async () => {
       try {
-        const data = await data_fetch("/data/videos.json");
+        const data = await loadAllVideos();
         if (data && Array.isArray(data)) {
-          setAllVideos(data);
-          const firstBatch = data.slice(0, VIDEOS_PER_PAGE);
+          // Filter out the current video if currentVideoId is provided
+          const filteredVideos = currentVideoId
+            ? data.filter((video) => video.id !== parseInt(currentVideoId))
+            : data;
+
+          setAllVideos(filteredVideos);
+          const firstBatch = filteredVideos.slice(0, VIDEOS_PER_PAGE);
           setDisplayedVideos(firstBatch);
         } else {
           console.error("Invalid data format received");
@@ -36,7 +46,7 @@ export default function SideRecommendation({ scrollContainerRef }) {
     };
 
     fetchInitialData();
-  }, []);
+  }, [currentVideoId]);
 
   // Load more videos (reusing existing ones)
   const loadMoreVideos = () => {
@@ -116,7 +126,9 @@ export default function SideRecommendation({ scrollContainerRef }) {
   }, [isLoading, isLoadingMore, allVideos.length, page, scrollContainerRef]);
 
   const handleVideoClick = (videoId) => {
-    console.log("Side recommendation video clicked:", videoId);
+    // Extract the original video ID (remove page suffix if present)
+    const originalId = videoId.toString().split("-side-page-")[0];
+    navigate(`/watch/${originalId}`);
   };
 
   const handleChannelClick = (channelName) => {
@@ -139,7 +151,7 @@ export default function SideRecommendation({ scrollContainerRef }) {
                 thumbnail={video.thumbnail}
                 title={video.title}
                 channelName={video.channelName}
-                views={`${Math.floor(video.views / 1000)}K views`}
+                views={video.views}
                 uploadDate={video.uploadDate}
                 duration={video.duration}
                 isVerified={video.isVerified}

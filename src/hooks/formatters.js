@@ -65,11 +65,16 @@ export const useFormatViews = () => {
 // Hook for formatting duration (e.g., "10:30", "1:05:30")
 export const useFormatDuration = () => {
   return useCallback((seconds) => {
-    if (!seconds || seconds < 0) return "0:00";
+    // Handle invalid values
+    if (!seconds || isNaN(seconds) || seconds < 0) return "0:00";
 
-    const hours = Math.floor(seconds / 3600);
-    const minutes = Math.floor((seconds % 3600) / 60);
-    const remainingSeconds = Math.floor(seconds % 60);
+    // Ensure we have a number
+    const duration = typeof seconds === "string" ? parseInt(seconds) : seconds;
+    if (isNaN(duration)) return "0:00";
+
+    const hours = Math.floor(duration / 3600);
+    const minutes = Math.floor((duration % 3600) / 60);
+    const remainingSeconds = Math.floor(duration % 60);
 
     if (hours > 0) {
       return `${hours}:${minutes.toString().padStart(2, "0")}:${remainingSeconds
