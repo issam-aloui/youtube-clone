@@ -1,13 +1,22 @@
 import Basic_layout from "../layout/basic_layout";
 import VideoPlayer from "../components/VideoPlayer";
 import SideRecommendation from "../components/SideRecommendation";
+import PlaylistSidebar from "../components/PlaylistSidebar";
 import IconButton from "../components/IconButton";
 import CommentSection from "../components/CommentSection";
 import { SidebarProvider } from "../context/SidebarContext";
 import { useFormatNumber, useFormatTimeAgo } from "../hooks/formatters";
 import { addToWatchHistory } from "../hooks/watchHistory";
+import {
+  toggleLikeVideo,
+  toggleDislikeVideo,
+  toggleSubscribeChannel,
+  isVideoLiked,
+  isVideoDisliked,
+  isChannelSubscribed,
+} from "../hooks/userInteractions";
 import { Flex, Box, Text, Button, HStack, VStack } from "@chakra-ui/react";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export default function WatchPage({
   videoId,
@@ -20,16 +29,63 @@ export default function WatchPage({
   dislikes,
   views,
   uploadDate,
+  playlistId,
 }) {
   const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
   const [videoError, setVideoError] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
+  const [isDisliked, setIsDisliked] = useState(false);
+  const [isSubscribed, setIsSubscribed] = useState(false);
   const watchPageRef = useRef(null);
   const formatNumber = useFormatNumber();
   const formatTimeAgo = useFormatTimeAgo();
 
+  // Check user interactions status on component mount
+  useEffect(() => {
+    if (videoId) {
+      setIsLiked(isVideoLiked(videoId));
+      setIsDisliked(isVideoDisliked(videoId));
+    }
+    if (channelName) {
+      setIsSubscribed(isChannelSubscribed(channelName));
+    }
+  }, [videoId, channelName]);
+
   // Handle video play for watch history
   const handleVideoPlay = (playedVideoId) => {
     addToWatchHistory(playedVideoId);
+  };
+
+  // Handle like button click
+  const handleLikeClick = () => {
+    if (videoId) {
+      const newLikedState = toggleLikeVideo(videoId);
+      setIsLiked(newLikedState);
+      if (newLikedState && isDisliked) {
+        setIsDisliked(false);
+      }
+    }
+  };
+
+  // Handle dislike button click
+  const handleDislikeClick = () => {
+    if (videoId) {
+      const newDislikedState = toggleDislikeVideo(videoId);
+      setIsDisliked(newDislikedState);
+      if (newDislikedState && isLiked) {
+        setIsLiked(false);
+      }
+    }
+  };
+
+  // Handle subscribe button click
+  const handleSubscribeClick = () => {
+    if (fallbackData.channelName) {
+      const newSubscribedState = toggleSubscribeChannel(
+        fallbackData.channelName
+      );
+      setIsSubscribed(newSubscribedState);
+    }
   };
 
   // Check for critical missing data
@@ -279,8 +335,8 @@ export default function WatchPage({
 
                     {/* Subscribe Button */}
                     <Button
-                      bg="white"
-                      color="black"
+                      bg={isSubscribed ? "gray.600" : "white"}
+                      color={isSubscribed ? "white" : "black"}
                       fontSize="14px"
                       fontWeight="600"
                       px="16px"
@@ -288,14 +344,17 @@ export default function WatchPage({
                       h="36px"
                       borderRadius="18px"
                       ml="16px"
-                      _hover={{ bg: "gray.200" }}>
-                      Subscribe
+                      onClick={handleSubscribeClick}
+                      _hover={{
+                        bg: isSubscribed ? "gray.700" : "gray.200",
+                      }}>
+                      {isSubscribed ? "Subscribed" : "Subscribe"}
                     </Button>
                   </HStack>
 
                   {/* Action Buttons */}
                   <HStack spacing="8px">
-                    {/* Like Button */}
+                    {/* Like/Dislike Button */}
                     <HStack
                       spacing="0"
                       bg="gray.800"
@@ -304,27 +363,29 @@ export default function WatchPage({
                       <IconButton
                         icon="/src/assets/icons/white_icons/liked.svg"
                         text={formatNumber(fallbackData.likes)}
-                        bg="transparent"
+                        bg={isLiked ? "red.600" : "transparent"}
                         color="white"
                         fontSize="14px"
                         px="12px"
                         py="8px"
                         h="36px"
                         borderRadius="18px 0 0 18px"
-                        _hover={{ bg: "gray.700" }}
+                        _hover={{ bg: isLiked ? "red.700" : "gray.700" }}
+                        onClick={handleLikeClick}
                       />
                       <Box w="1px" h="24px" bg="gray.600" />
                       <IconButton
                         icon="/src/assets/icons/white_icons/DisLiked.svg"
                         text={formatNumber(fallbackData.dislikes)}
-                        bg="transparent"
+                        bg={isDisliked ? "red.600" : "transparent"}
                         color="white"
                         fontSize="14px"
                         px="12px"
                         py="8px"
                         h="36px"
                         borderRadius="0 18px 18px 0"
-                        _hover={{ bg: "gray.700" }}
+                        _hover={{ bg: isDisliked ? "red.700" : "gray.700" }}
+                        onClick={handleDislikeClick}
                       />
                     </HStack>
 
@@ -499,12 +560,19 @@ export default function WatchPage({
               {/* Remove duplicate description section */}
             </Box>
           </Box>
-          {/* Side Recommendation Section - Right Side */}
+          {/* Side Section - Right Side */}
           <Box w="25%" h="100vh" bg="#121212">
-            <SideRecommendation
-              scrollContainerRef={watchPageRef}
-              currentVideoId={videoId}
-            />
+            {playlistId ? (
+              <PlaylistSidebar
+                playlistId={playlistId}
+                currentVideoId={videoId}
+              />
+            ) : (
+              <SideRecommendation
+                scrollContainerRef={watchPageRef}
+                currentVideoId={videoId}
+              />
+            )}
           </Box>
         </Flex>
       </Basic_layout>

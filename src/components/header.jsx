@@ -6,12 +6,18 @@ import notificationsIcon from "../assets/icons/white_icons/notifications.svg";
 import createIcon from "../assets/icons/white_icons/create-1.svg";
 import profileIcon from "../assets/images/profilePicture.jpg";
 import { useSidebar } from "../context/SidebarContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Header() {
   const { toggleSidebar } = useSidebar();
+  const navigate = useNavigate();
 
   const handleHamburgerClick = () => {
     toggleSidebar();
+  };
+
+  const handleLogoClick = () => {
+    navigate("/");
   };
 
   return (
@@ -29,7 +35,8 @@ export default function Header() {
         <img
           src={YouTubeLogo}
           alt="YouTube Logo"
-          className="!hidden sm:!block h-5 sm:h-6"
+          className="!hidden sm:!block h-5 sm:h-6 cursor-pointer"
+          onClick={handleLogoClick}
         />
       </div>
       <div className="flex-1 max-w-2xl !mx-2 sm:!mx-4">

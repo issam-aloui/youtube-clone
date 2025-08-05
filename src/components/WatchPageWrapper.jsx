@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { loadVideoById } from "../hooks/videoDataLoader";
 import WatchPage from "../pages/WatchPage";
 import { Box, Spinner, Text, Center } from "@chakra-ui/react";
 
 const WatchPageWrapper = () => {
   const { id } = useParams();
+  const [searchParams] = useSearchParams();
+  const playlistId = searchParams.get("playlist");
   const [video, setVideo] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -91,6 +93,7 @@ const WatchPageWrapper = () => {
       dislikes="5" // You can add this to video data later
       views={video.views}
       uploadDate={video.uploadDate}
+      playlistId={playlistId}
     />
   );
 };

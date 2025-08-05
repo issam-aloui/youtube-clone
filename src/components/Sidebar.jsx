@@ -207,12 +207,14 @@ const Sidebar = () => {
           icon={historyIcon}
           text="History"
           href="/history"
+          isActive={!isWatchPage && location.pathname === "/history"}
           className="!px-3 !py-2"
         />
         <AnchorButton
           icon={playlistIcon}
           text="Playlists"
           href="/playlists"
+          isActive={!isWatchPage && location.pathname === "/playlists"}
           className="!px-3 !py-2"
         />
         <AnchorButton
@@ -230,7 +232,7 @@ const Sidebar = () => {
         <AnchorButton
           icon={likedIcon}
           text="Liked videos"
-          href="/liked"
+          href="/playlist?id=liked-videos"
           className="!px-3 !py-2"
         />
         <AnchorButton
