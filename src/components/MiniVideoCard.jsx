@@ -37,14 +37,20 @@ const MiniVideoCard = ({
     return (
       <Flex
         w="100%"
-        h="94px"
+        minH={{ base: "120px", md: "94px" }}
         bg="gray.50"
         borderRadius="12px"
         overflow="hidden"
-        gap={3}
-        p={2}>
+        gap={{ base: 2, md: 3 }}
+        p={2}
+        direction={{ base: "column", sm: "row" }}>
         {/* Thumbnail skeleton */}
-        <Skeleton w="168px" h="94px" borderRadius="12px" flexShrink={0} />
+        <Skeleton
+          w={{ base: "100%", sm: "168px" }}
+          h={{ base: "140px", sm: "94px" }}
+          borderRadius="12px"
+          flexShrink={0}
+        />
 
         {/* Content skeleton */}
         <VStack align="start" justify="start" flex={1} spacing={2} pt={1}>
@@ -58,7 +64,7 @@ const MiniVideoCard = ({
   return (
     <Flex
       w="100%"
-      h="94px"
+      minH={{ base: "120px", md: "94px" }}
       cursor="pointer"
       borderRadius="12px"
       overflow="hidden"
@@ -66,14 +72,15 @@ const MiniVideoCard = ({
       _hover={{
         transform: "scale(1.02)",
       }}
-      gap={3}
+      gap={{ base: 2, md: 3 }}
       p={2}
+      direction={{ base: "column", sm: "row" }}
       onClick={onVideoClick}>
       {/* Thumbnail */}
       <Box
         position="relative"
-        w="168px"
-        h="94px"
+        w={{ base: "100%", sm: "168px" }}
+        h={{ base: "140px", sm: "94px" }}
         borderRadius="12px"
         overflow="hidden"
         flexShrink={0}
@@ -119,31 +126,34 @@ const MiniVideoCard = ({
         justify="start"
         flex={1}
         spacing={1}
-        overflow="hidden">
+        overflow="hidden"
+        minW={0}>
         {/* Title */}
         <Text
-          fontSize="14px"
+          fontSize={{ base: "16px", md: "14px" }}
           fontWeight="500"
           color="white"
           lineHeight="20px"
-          noOfLines={2}
+          noOfLines={{ base: 3, md: 2 }}
           cursor="pointer"
-          transition="color 0.2s ease">
+          transition="color 0.2s ease"
+          wordBreak="break-word">
           {title}
         </Text>
 
         {/* Channel and metadata */}
         <VStack align="start" spacing={0.5} w="100%">
-          <HStack spacing={1}>
+          <HStack spacing={1} flexWrap="wrap">
             <Text
-              fontSize="13px"
+              fontSize={{ base: "14px", md: "13px" }}
               color="#aaaaaa"
               cursor="pointer"
               transition="color 0.2s ease"
               onClick={(e) => {
                 e.stopPropagation();
                 onChannelClick?.();
-              }}>
+              }}
+              noOfLines={1}>
               {channelName}
             </Text>
             {isVerified && (
@@ -156,13 +166,18 @@ const MiniVideoCard = ({
                 alignItems="center"
                 justifyContent="center"
                 fontSize="10px"
-                color="white">
+                color="white"
+                flexShrink={0}>
                 ✓
               </Box>
             )}
           </HStack>
 
-          <Text fontSize="13px" color="#aaaaaa" noOfLines={1}>
+          <Text
+            fontSize={{ base: "14px", md: "13px" }}
+            color="#aaaaaa"
+            noOfLines={1}
+            wordBreak="break-word">
             {formatViews(views)} • {formatTimeAgo(uploadDate)}
           </Text>
         </VStack>

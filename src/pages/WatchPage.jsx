@@ -5,6 +5,7 @@ import IconButton from "../components/IconButton";
 import CommentSection from "../components/CommentSection";
 import { SidebarProvider } from "../context/SidebarContext";
 import { useFormatNumber, useFormatTimeAgo } from "../hooks/formatters";
+import { addToWatchHistory } from "../hooks/watchHistory";
 import { Flex, Box, Text, Button, HStack, VStack } from "@chakra-ui/react";
 import { useState, useRef } from "react";
 
@@ -25,6 +26,11 @@ export default function WatchPage({
   const watchPageRef = useRef(null);
   const formatNumber = useFormatNumber();
   const formatTimeAgo = useFormatTimeAgo();
+
+  // Handle video play for watch history
+  const handleVideoPlay = (playedVideoId) => {
+    addToWatchHistory(playedVideoId);
+  };
 
   // Check for critical missing data
   const isMissingCriticalData = !videoUrl || !title;
@@ -194,6 +200,8 @@ export default function WatchPage({
                 <VideoPlayer
                   src={fallbackData.videoUrl}
                   type="application/x-mpegURL"
+                  videoId={videoId}
+                  onPlay={handleVideoPlay}
                 />
               </Box>
             )}

@@ -1,5 +1,6 @@
 import { Box, VStack, Text, Avatar, Flex } from "@chakra-ui/react";
 import { useSidebar } from "../context/SidebarContext";
+import { useLocation } from "react-router-dom";
 import AnchorButton from "./AnchorButton";
 import { useEffect, useState } from "react";
 import IconButton from "./IconButton";
@@ -25,6 +26,10 @@ const Sidebar = () => {
   const [subscriptions, setSubscriptions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showAllSubscriptions, setShowAllSubscriptions] = useState(false);
+  const location = useLocation();
+
+  // Don't show active states on watch pages
+  const isWatchPage = location.pathname.startsWith("/watch");
 
   useEffect(() => {
     // Fetch data from public/data/subscriptions.json
@@ -124,22 +129,25 @@ const Sidebar = () => {
             icon={homeIcon}
             text="Home"
             href="/"
-            isActive={true}
+            isActive={!isWatchPage && location.pathname === "/"}
           />
           <CollapsedSidebarItem
             icon={shortsIcon}
             text="Shorts"
             href="/shorts"
+            isActive={!isWatchPage && location.pathname === "/shorts"}
           />
           <CollapsedSidebarItem
             icon={subscriptionIcon}
             text="Subscriptions"
             href="/subscriptions"
+            isActive={!isWatchPage && location.pathname === "/subscriptions"}
           />
           <CollapsedSidebarItem
             icon={exploreIcon}
             text="Explore"
             href="/explore"
+            isActive={!isWatchPage && location.pathname === "/explore"}
           />
         </VStack>
       </Box>
@@ -175,13 +183,14 @@ const Sidebar = () => {
           icon={homeIcon}
           text="Home"
           href="/"
-          isActive={true}
+          isActive={!isWatchPage && location.pathname === "/"}
           className="!px-3 !py-2"
         />
         <AnchorButton
           icon={subscriptionIcon}
           text="Subscriptions"
           href="/subscriptions"
+          isActive={!isWatchPage && location.pathname === "/subscriptions"}
           className="!px-3 !py-2"
         />
 

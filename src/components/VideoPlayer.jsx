@@ -46,7 +46,7 @@ const loadPlugins = async () => {
   }
 };
 
-const VideoPlayer = ({ src, type = "video/mp4" }) => {
+const VideoPlayer = ({ src, type = "video/mp4", onPlay, videoId }) => {
   const videoRef = useRef(null);
   const playerRef = useRef(null);
 
@@ -78,6 +78,13 @@ const VideoPlayer = ({ src, type = "video/mp4" }) => {
         setupControlLayout(playerRef.current);
         setupKeyboardShortcuts(playerRef.current);
         enhanceProgressBarVisibility(playerRef.current);
+
+        // Add play event listener for watch history tracking
+        if (onPlay && videoId) {
+          playerRef.current.on("play", () => {
+            onPlay(videoId);
+          });
+        }
       }, 0);
       return () => clearTimeout(timer);
     }
