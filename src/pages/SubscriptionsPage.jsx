@@ -1,18 +1,12 @@
 import { SidebarProvider } from "../context/SidebarContext";
 import Basic_layout from "../layout/basic_layout";
 import VideoCard from "../components/VideoCard";
-import {
-  SimpleGrid,
-  Box,
-  Spinner,
-  Flex,
-  Text,
-  Heading,
-} from "@chakra-ui/react";
+import { SimpleGrid, Box, Heading } from "@chakra-ui/react";
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { loadAllVideos } from "../hooks/videoDataLoader";
 import data_fetch from "../hooks/data_fetch";
+import { SpinnerLoader } from "../components/loaders";
 
 export default function SubscriptionsPage() {
   const [isLoading, setIsLoading] = useState(true);
@@ -202,24 +196,11 @@ export default function SubscriptionsPage() {
 
             {/* Loading more cards */}
             {isLoadingMore && (
-              <Box gridColumn="1 / -1" py={8}>
-                <Flex
-                  direction="column"
-                  align="center"
-                  justify="center"
-                  gap={4}>
-                  <Spinner
-                    thickness="4px"
-                    speed="0.8s"
-                    emptyColor="gray.200"
-                    color="red.500"
-                    size="xl"
-                  />
-                  <Text color="gray.600" fontSize="sm">
-                    Loading more videos...
-                  </Text>
-                </Flex>
-              </Box>
+              <SpinnerLoader
+                gridColumn="1 / -1"
+                text="Loading more videos..."
+                textColor="gray.600"
+              />
             )}
           </SimpleGrid>
         </Box>

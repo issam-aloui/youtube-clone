@@ -1,6 +1,9 @@
 import React from "react";
 import { Box, Text, HStack, VStack, Flex } from "@chakra-ui/react";
 import { useFormatNumber, useFormatTimeAgo } from "../hooks/formatters";
+import likedIcon from "../assets/icons/white_icons/liked.svg";
+import dislikedIcon from "../assets/icons/white_icons/DisLiked.svg";
+import downArrowIcon from "../assets/icons/white_icons/down_arrow.svg";
 
 const CommentCard = ({
   username,
@@ -115,7 +118,7 @@ const CommentCard = ({
                 alignItems="center"
                 justifyContent="center">
                 <img
-                  src="/src/assets/icons/white_icons/liked.svg"
+                  src={likedIcon}
                   alt="Like"
                   style={{ width: "16px", height: "16px" }}
                 />
@@ -143,7 +146,7 @@ const CommentCard = ({
                 alignItems="center"
                 justifyContent="center">
                 <img
-                  src="/src/assets/icons/white_icons/DisLiked.svg"
+                  src={dislikedIcon}
                   alt="Dislike"
                   style={{ width: "16px", height: "16px" }}
                 />
@@ -186,7 +189,7 @@ const CommentCard = ({
                 alignItems="center"
                 justifyContent="center">
                 <img
-                  src="/src/assets/icons/white_icons/down_arrow.svg"
+                  src={downArrowIcon}
                   alt="Show replies"
                   style={{ width: "16px", height: "16px" }}
                 />

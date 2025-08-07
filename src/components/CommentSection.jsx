@@ -2,6 +2,8 @@ import React from "react";
 import { Box, Text, HStack, VStack, Flex } from "@chakra-ui/react";
 import CommentCard from "./CommentCard";
 import { useFormatNumber } from "../hooks/formatters";
+import moreIcon from "../assets/icons/white_icons/more.svg";
+import profilePicture from "../assets/images/profilePicture.jpg";
 
 const CommentSection = ({ commentCount = 0, comments = [] }) => {
   const formatNumber = useFormatNumber();
@@ -28,7 +30,7 @@ const CommentSection = ({ commentCount = 0, comments = [] }) => {
             alignItems="center"
             justifyContent="center">
             <img
-              src="/src/assets/icons/white_icons/more.svg"
+              src={moreIcon}
               alt="Sort"
               style={{ width: "16px", height: "16px" }}
             />
@@ -53,7 +55,7 @@ const CommentSection = ({ commentCount = 0, comments = [] }) => {
           alignItems="center"
           justifyContent="center">
           <img
-            src="/src/assets/images/profilePicture.jpg"
+            src={profilePicture}
             alt="Your avatar"
             style={{
               width: "100%",

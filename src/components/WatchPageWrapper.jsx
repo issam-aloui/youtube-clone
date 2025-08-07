@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import { loadVideoById } from "../hooks/videoDataLoader";
 import WatchPage from "../pages/WatchPage";
-import { Box, Spinner, Text, Center } from "@chakra-ui/react";
+import { Box, Text, Center } from "@chakra-ui/react";
+import { SpinnerLoader } from "./loaders";
 
 const WatchPageWrapper = () => {
   const { id } = useParams();
@@ -43,17 +44,16 @@ const WatchPageWrapper = () => {
   if (loading) {
     return (
       <Center minH="100vh" bg="black">
-        <Box textAlign="center">
-          <Spinner
-            thickness="4px"
-            speed="0.8s"
-            emptyColor="gray.200"
-            color="red.500"
-            size="xl"
-            mb={4}
-          />
-          <Text color="white">Loading video...</Text>
-        </Box>
+        <SpinnerLoader
+          text="Loading video..."
+          textColor="white"
+          thickness="4px"
+          speed="0.8s"
+          emptyColor="gray.200"
+          color="red.500"
+          fullHeight={false}
+          minHeight="auto"
+        />
       </Center>
     );
   }

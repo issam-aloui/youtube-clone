@@ -1,18 +1,11 @@
 import React, { useState } from "react";
-import {
-  Box,
-  Flex,
-  Text,
-  Image,
-  Skeleton,
-  SkeletonText,
-  SkeletonCircle,
-} from "@chakra-ui/react";
+import { Box, Flex, Text, Image, Skeleton } from "@chakra-ui/react";
 import {
   useFormatViews,
   useFormatDuration,
   useFormatTimeAgo,
 } from "../hooks/formatters";
+import { CardLoader } from "./loaders";
 
 const VideoCard = ({
   thumbnail,
@@ -36,18 +29,7 @@ const VideoCard = ({
 
   // Loading skeleton
   if (isLoading) {
-    return (
-      <Box w="full">
-        <Skeleton borderRadius="12px" w="full" aspectRatio="16/9" mb="12px" />
-        <Flex gap="12px" align="start">
-          <SkeletonCircle size="32px" flexShrink={0} />
-          <Box flex="1" minW="0">
-            <SkeletonText noOfLines={2} spacing="2" mb="4px" />
-            <SkeletonText noOfLines={1} w="60%" />
-          </Box>
-        </Flex>
-      </Box>
-    );
+    return <CardLoader />;
   }
 
   return (

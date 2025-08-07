@@ -18,6 +18,11 @@ import {
 import { Flex, Box, Text, Button, HStack, VStack } from "@chakra-ui/react";
 import { useState, useRef, useEffect } from "react";
 
+// Import assets
+import profilePicture from "../assets/images/profilePicture.jpg";
+import likedIcon from "../assets/icons/white_icons/liked.svg";
+import dislikedIcon from "../assets/icons/white_icons/DisLiked.svg";
+
 export default function WatchPage({
   videoId,
   videoUrl,
@@ -288,7 +293,7 @@ export default function WatchPage({
                       alignItems="center"
                       justifyContent="center">
                       <img
-                        src="/src/assets/images/profilePicture.jpg"
+                        src={profilePicture}
                         alt={fallbackData.channelName}
                         style={{
                           width: "100%",
@@ -361,7 +366,7 @@ export default function WatchPage({
                       borderRadius="18px"
                       overflow="hidden">
                       <IconButton
-                        icon="/src/assets/icons/white_icons/liked.svg"
+                        icon={likedIcon}
                         text={formatNumber(fallbackData.likes)}
                         bg={isLiked ? "red.600" : "transparent"}
                         color="white"
@@ -375,7 +380,7 @@ export default function WatchPage({
                       />
                       <Box w="1px" h="24px" bg="gray.600" />
                       <IconButton
-                        icon="/src/assets/icons/white_icons/DisLiked.svg"
+                        icon={dislikedIcon}
                         text={formatNumber(fallbackData.dislikes)}
                         bg={isDisliked ? "red.600" : "transparent"}
                         color="white"

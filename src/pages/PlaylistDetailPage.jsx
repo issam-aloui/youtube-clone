@@ -8,7 +8,6 @@ import {
   VStack,
   HStack,
   Button,
-  Spinner,
   SimpleGrid,
 } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
@@ -16,6 +15,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import data_fetch from "../hooks/data_fetch";
 import { loadVideoById } from "../hooks/videoDataLoader";
 import { getLikedVideos } from "../hooks/userInteractions";
+import { SpinnerLoader } from "../components/loaders";
 import {
   useFormatTimeAgo,
   useFormatDuration,
@@ -115,9 +115,13 @@ export default function PlaylistDetailPage() {
     return (
       <SidebarProvider>
         <Basic_layout>
-          <Flex justify="center" align="center" minH="100vh">
-            <Spinner size="xl" color="white" thickness="3px" />
-          </Flex>
+          <SpinnerLoader
+            color="white"
+            thickness="3px"
+            fullHeight={true}
+            text="Loading playlist..."
+            textColor="white"
+          />
         </Basic_layout>
       </SidebarProvider>
     );

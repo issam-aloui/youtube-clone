@@ -74,7 +74,8 @@ export default function NotFoundPage() {
               </Button>
               <Button
                 variant="outline"
-                colorScheme="gray"
+                color="white"
+                __hover={{ bg: "white", color: "black" }}
                 size="md"
                 onClick={() => navigate(-1)}>
                 Go Back

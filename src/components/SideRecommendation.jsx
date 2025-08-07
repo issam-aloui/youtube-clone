@@ -1,8 +1,9 @@
 import MiniVideoCard from "./MiniVideoCard";
-import { Box, Spinner, Flex, Text, VStack } from "@chakra-ui/react";
+import { Box, VStack } from "@chakra-ui/react";
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { loadAllVideos } from "../hooks/videoDataLoader";
+import { SpinnerLoader } from "./loaders";
 
 export default function SideRecommendation({
   scrollContainerRef,
@@ -162,20 +163,17 @@ export default function SideRecommendation({
 
         {/* Loading more cards */}
         {isLoadingMore && (
-          <Box py={4}>
-            <Flex direction="column" align="center" justify="center" gap={2}>
-              <Spinner
-                thickness="2px"
-                speed="0.8s"
-                emptyColor="gray.600"
-                color="red.500"
-                size="md"
-              />
-              <Text color="gray.400" fontSize="12px">
-                Loading more videos...
-              </Text>
-            </Flex>
-          </Box>
+          <SpinnerLoader
+            size="md"
+            thickness="2px"
+            color="red.500"
+            emptyColor="gray.600"
+            text="Loading more videos..."
+            textColor="gray.400"
+            textSize="12px"
+            centerContent={false}
+            py={4}
+          />
         )}
       </VStack>
     </Box>

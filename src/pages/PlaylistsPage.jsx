@@ -4,7 +4,6 @@ import PlaylistCard from "../components/PlaylistCard";
 import {
   SimpleGrid,
   Box,
-  Spinner,
   Flex,
   Text,
   Heading,
@@ -13,6 +12,7 @@ import {
 } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { SpinnerLoader } from "../components/loaders";
 import data_fetch from "../hooks/data_fetch";
 import { getLikedVideos } from "../hooks/userInteractions";
 import { loadVideoById } from "../hooks/videoDataLoader";
@@ -129,9 +129,12 @@ export default function PlaylistsPage() {
 
           {/* Content */}
           {isLoading ? (
-            <Flex justify="center" align="center" minH="50vh">
-              <Spinner size="xl" color="white" thickness="3px" />
-            </Flex>
+            <SpinnerLoader
+              color="white"
+              thickness="3px"
+              text="Loading playlists..."
+              textColor="white"
+            />
           ) : playlists.length === 0 ? (
             <Flex
               justify="center"

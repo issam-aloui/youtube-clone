@@ -14,6 +14,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useFormatTimeAgo } from "../hooks/formatters";
 import MiniVideoCard from "../components/MiniVideoCard";
+import { SpinnerLoader } from "../components/loaders";
 import {
   getWatchHistoryWithDetails,
   clearWatchHistory,
@@ -195,11 +196,12 @@ export default function HistoryPage() {
 
           {/* History content */}
           {isLoading ? (
-            <Box textAlign="center" py="60px">
-              <Text color="gray.400" fontSize="16px">
-                Loading watch history...
-              </Text>
-            </Box>
+            <SpinnerLoader
+              text="Loading watch history..."
+              textColor="gray.400"
+              color="red.500"
+              minHeight="30vh"
+            />
           ) : watchHistory.length === 0 ? (
             <Box textAlign="center" py="60px">
               <Text color="gray.400" fontSize="16px">
