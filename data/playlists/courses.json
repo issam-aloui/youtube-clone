@@ -1,0 +1,9 @@
+{
+  "id": "courses",
+  "title": "Programming Courses",
+  "status": "private",
+  "lastTimeUpdate": "2024-07-30T10:00:00Z",
+  "videoIds": [2, 4, 6, 8, 10, 12, 1, 3],
+  "thumbnail": null,
+  "description": "A collection of programming tutorials and courses for learning web development."
+}

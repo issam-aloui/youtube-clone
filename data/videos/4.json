@@ -1,0 +1,13 @@
+{
+  "id": 4,
+  "thumbnail": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/TearsOfSteel.jpg",
+  "title": "Tears of Steel - Sci-Fi Action Thriller",
+  "channelName": "Mango Studios",
+  "channelAvatar": "https://i.pravatar.cc/150?img=4",
+  "views": 2987654,
+  "uploadDate": "2024-02-01",
+  "duration": 734,
+  "isVerified": true,
+  "description": "A futuristic sci-fi thriller set in post-apocalyptic Amsterdam. Watch as heroes battle against overwhelming odds in this visually stunning production that pushes the boundaries of open-source filmmaking.",
+  "videoUrl": "https://demo.unified-streaming.com/k8s/features/stable/video/tears-of-steel/tears-of-steel.ism/.m3u8"
+}

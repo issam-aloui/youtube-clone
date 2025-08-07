@@ -1,0 +1,13 @@
+{
+  "id": 6,
+  "thumbnail": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=450&fit=crop",
+  "title": "React vs Vue vs Angular - Which to Choose?",
+  "channelName": "CodeWith Alex",
+  "channelAvatar": "https://i.pravatar.cc/150?img=6",
+  "views": 876543,
+  "uploadDate": "2024-02-10",
+  "duration": 1116,
+  "isVerified": false,
+  "description": "Confused about which JavaScript framework to learn? In this comprehensive comparison, we break down React, Vue, and Angular to help you make the right choice for your next project. Includes real examples and performance benchmarks!",
+  "videoUrl": "https://demo.unified-streaming.com/k8s/features/stable/video/tears-of-steel/tears-of-steel.ism/.m3u8"
+}

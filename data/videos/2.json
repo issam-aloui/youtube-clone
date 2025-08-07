@@ -1,0 +1,13 @@
+{
+  "id": 2,
+  "thumbnail": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ElephantsDream.jpg",
+  "title": "Elephant's Dream - Surreal Animation Masterpiece",
+  "channelName": "Orange Studios",
+  "channelAvatar": "https://i.pravatar.cc/150?img=2",
+  "views": 1876543,
+  "uploadDate": "2024-01-08",
+  "duration": 653,
+  "isVerified": true,
+  "description": "Experience the first open movie project from the Blender Foundation. Elephant's Dream takes you on a surreal journey through impossible worlds, featuring groundbreaking animation techniques and innovative storytelling.",
+  "videoUrl": "https://demo.unified-streaming.com/k8s/features/stable/video/tears-of-steel/tears-of-steel.ism/.m3u8"
+}

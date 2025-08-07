@@ -1,0 +1,13 @@
+{
+  "id": 3,
+  "thumbnail": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/Sintel.jpg",
+  "title": "Sintel - Epic Fantasy Short Film",
+  "channelName": "Blender Institute",
+  "channelAvatar": "https://i.pravatar.cc/150?img=3",
+  "views": 3245678,
+  "uploadDate": "2024-01-22",
+  "duration": 888,
+  "isVerified": true,
+  "description": "Follow Sintel on her quest to find her beloved dragon companion. This emotionally powerful short film showcases cutting-edge 3D animation and tells a story of friendship, loss, and redemption.",
+  "videoUrl": "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8"
+}

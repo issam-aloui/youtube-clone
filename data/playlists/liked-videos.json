@@ -1,0 +1,10 @@
+{
+  "id": "liked-videos",
+  "title": "Liked videos",
+  "status": "private",
+  "lastTimeUpdate": "2024-08-05T12:00:00Z",
+  "videoIds": [],
+  "thumbnail": null,
+  "description": "Collection of all liked videos from various channels.",
+  "isDynamic": true
+}

@@ -1,0 +1,9 @@
+{
+  "id": "python-course",
+  "title": "Python Programming Course",
+  "status": "private",
+  "lastTimeUpdate": "2024-07-22T08:20:00Z",
+  "videoIds": [7, 11, 3, 5, 9, 1, 2, 6, 10, 4, 8],
+  "thumbnail": null,
+  "description": "Comprehensive Python programming course for all levels."
+}

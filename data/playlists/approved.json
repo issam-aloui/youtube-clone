@@ -1,0 +1,9 @@
+{
+  "id": "approved",
+  "title": "Approved Content",
+  "status": "public",
+  "lastTimeUpdate": "2024-07-28T14:30:00Z",
+  "videoIds": [3, 7, 11, 1, 5, 9],
+  "thumbnail": null,
+  "description": "Curated collection of approved and verified content."
+}
