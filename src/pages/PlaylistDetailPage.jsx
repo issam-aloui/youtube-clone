@@ -1,5 +1,3 @@
-import { SidebarProvider } from "../context/SidebarContext";
-import Basic_layout from "../layout/basic_layout";
 import {
   Box,
   Flex,
@@ -113,56 +111,46 @@ export default function PlaylistDetailPage() {
 
   if (isLoading) {
     return (
-      <SidebarProvider>
-        <Basic_layout>
-          <SpinnerLoader
-            color="white"
-            thickness="3px"
-            fullHeight={true}
-            text="Loading playlist..."
-            textColor="white"
-          />
-        </Basic_layout>
-      </SidebarProvider>
+      <SpinnerLoader
+        color="white"
+        thickness="3px"
+        fullHeight={true}
+        text="Loading playlist..."
+        textColor="white"
+      />
     );
   }
 
   if (error || !playlist) {
     return (
-      <SidebarProvider>
-        <Basic_layout>
-          <Flex
-            justify="center"
-            align="center"
-            minH="50vh"
-            direction="column"
-            gap="16px">
-            <Text color="red.400" fontSize="18px">
-              {error || "Playlist not found"}
-            </Text>
-            <Button
-              colorScheme="red"
-              variant="outline"
-              onClick={() => navigate("/playlists")}>
-              Back to Playlists
-            </Button>
-          </Flex>
-        </Basic_layout>
-      </SidebarProvider>
+      <Flex
+        justify="center"
+        align="center"
+        minH="50vh"
+        direction="column"
+        gap="16px">
+        <Text color="red.400" fontSize="18px">
+          {error || "Playlist not found"}
+        </Text>
+        <Button
+          colorScheme="red"
+          variant="outline"
+          onClick={() => navigate("/playlists")}>
+          Back to Playlists
+        </Button>
+      </Flex>
     );
   }
 
   const displayThumbnail = playlist.thumbnail || firstVideoThumbnail;
 
   return (
-    <SidebarProvider>
-      <Basic_layout>
-        <Flex direction="row" minH="100vh" p="20px" gap="20px">
-          {/* Left Side - Playlist Info (33% width) */}
-          <Box w="33%" flexShrink={0}>
-            <Box
-              bg="#0f0f0f"
-              borderRadius="12px"
+    <Flex direction="row" h="full" w="full" p="20px" gap="20px">
+      {/* Left Side - Playlist Info (33% width) */}
+      <Box w="33%" flexShrink={0}>
+        <Box
+          bg="#0f0f0f"
+          borderRadius="12px"
               overflow="hidden"
               border="1px solid #323232">
               {/* Playlist Thumbnail */}
@@ -378,7 +366,5 @@ export default function PlaylistDetailPage() {
             )}
           </Box>
         </Flex>
-      </Basic_layout>
-    </SidebarProvider>
   );
 }

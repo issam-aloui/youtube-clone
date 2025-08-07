@@ -1,6 +1,7 @@
 import { Box, Text, Flex } from "@chakra-ui/react";
+import { memo } from "react";
 
-const AnchorButton = ({
+const AnchorButton = memo(({
   icon,
   text,
   href = "#",
@@ -70,6 +71,6 @@ const AnchorButton = ({
       </Flex>
     </Box>
   );
-};
+});
 
 export default AnchorButton;

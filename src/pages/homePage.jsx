@@ -1,5 +1,3 @@
-import { SidebarProvider } from "../context/SidebarContext";
-import Basic_layout from "../layout/basic_layout";
 import VideoCard from "../components/VideoCard";
 import { SimpleGrid, Box } from "@chakra-ui/react";
 import { useState, useEffect, useRef } from "react";
@@ -129,48 +127,50 @@ export default function HomePage() {
   };
 
   return (
-    <SidebarProvider>
-      <Basic_layout ref={scrollContainerRef}>
-        <Box p="20px" minH="100vh">
-          <SimpleGrid
-            columns={{ base: 1, sm: 1, md: 2, lg: 3, xl: 4 }}
-            spacing="20px"
-            gap={4}
-            w="full">
-            {isLoading
-              ? // Show initial loading cards
-                Array.from({ length: 10 }, (_, index) => (
-                  <VideoCard key={`loading-${index}`} isLoading={true} />
-                ))
-              : // Show actual video cards
-                displayedVideos.map((video) => (
-                  <VideoCard
-                    key={video.id}
-                    thumbnail={video.thumbnail}
-                    title={video.title}
-                    channelName={video.channelName}
-                    channelAvatar={video.channelAvatar}
-                    views={video.views}
-                    uploadDate={video.uploadDate}
-                    duration={video.duration}
-                    isVerified={video.isVerified}
-                    onVideoClick={() => handleVideoClick(video.id)}
-                    onChannelClick={() => handleChannelClick(video.channelName)}
-                    onMoreClick={() => handleMoreClick(video.id)}
-                  />
-                ))}
-
-            {/* Loading more cards */}
-            {isLoadingMore && (
-              <SpinnerLoader
-                gridColumn="1 / -1"
-                text="Loading more videos..."
-                textColor="gray.600"
+    <Box
+      ref={scrollContainerRef}
+      className="custom-scrollbar"
+      overflowY="auto"
+      h="full"
+      w="full"
+      p="20px">
+      <SimpleGrid
+        columns={{ base: 1, sm: 1, md: 2, lg: 3, xl: 4 }}
+        spacing="20px"
+        gap={4}
+        w="full">
+        {isLoading
+          ? // Show initial loading cards
+            Array.from({ length: 10 }, (_, index) => (
+              <VideoCard key={`loading-${index}`} isLoading={true} />
+            ))
+          : // Show actual video cards
+            displayedVideos.map((video) => (
+              <VideoCard
+                key={video.id}
+                thumbnail={video.thumbnail}
+                title={video.title}
+                channelName={video.channelName}
+                channelAvatar={video.channelAvatar}
+                views={video.views}
+                uploadDate={video.uploadDate}
+                duration={video.duration}
+                isVerified={video.isVerified}
+                onVideoClick={() => handleVideoClick(video.id)}
+                onChannelClick={() => handleChannelClick(video.channelName)}
+                onMoreClick={() => handleMoreClick(video.id)}
               />
-            )}
-          </SimpleGrid>
-        </Box>
-      </Basic_layout>
-    </SidebarProvider>
+            ))}
+
+        {/* Loading more cards */}
+        {isLoadingMore && (
+          <SpinnerLoader
+            gridColumn="1 / -1"
+            text="Loading more videos..."
+            textColor="gray.600"
+          />
+        )}
+      </SimpleGrid>
+    </Box>
   );
 }

@@ -1,5 +1,3 @@
-import { SidebarProvider } from "../context/SidebarContext";
-import Basic_layout from "../layout/basic_layout";
 import {
   Box,
   Flex,
@@ -141,15 +139,13 @@ export default function HistoryPage() {
   const groupedHistory = groupHistoryByDate();
 
   return (
-    <SidebarProvider>
-      <Basic_layout>
-        <Box p="20px" minH="100vh" maxW="1200px" mx="auto">
-          {/* Header */}
-          <VStack align="start" spacing="20px" mb="30px">
-            <Heading
-              as="h1"
-              size="2xl"
-              color="white"
+    <Box h="full" w="full" overflowY="auto" p="20px" maxW="1200px" mx="auto">
+      {/* Header */}
+      <VStack align="start" spacing="20px" mb="30px">
+        <Heading
+          as="h1"
+          size="2xl"
+          color="white"
               fontSize={{ base: "28px", md: "36px" }}
               fontWeight="400">
               Watch history
@@ -322,13 +318,11 @@ export default function HistoryPage() {
                         </Box>
                       );
                     })}
-                  </VStack>
-                </Box>
-              ))}
-            </VStack>
-          )}
-        </Box>
-      </Basic_layout>
-    </SidebarProvider>
+              </VStack>
+            </Box>
+          ))}
+        </VStack>
+      )}
+    </Box>
   );
 }

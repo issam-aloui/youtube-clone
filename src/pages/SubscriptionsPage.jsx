@@ -1,5 +1,3 @@
-import { SidebarProvider } from "../context/SidebarContext";
-import Basic_layout from "../layout/basic_layout";
 import VideoCard from "../components/VideoCard";
 import { SimpleGrid, Box, Heading } from "@chakra-ui/react";
 import { useState, useEffect, useRef } from "react";
@@ -152,19 +150,23 @@ export default function SubscriptionsPage() {
   };
 
   return (
-    <SidebarProvider>
-      <Basic_layout ref={scrollContainerRef}>
-        <Box p="20px" minH="100vh">
-          {/* Latest Heading - Bigger */}
-          <Heading
-            as="h1"
-            size="2xl"
-            color="white"
-            mb="24px"
-            fontSize={{ base: "24px", md: "28px", lg: "36px" }}
-            fontWeight="600">
-            Latest
-          </Heading>
+    <Box
+      ref={scrollContainerRef}
+      className="custom-scrollbar"
+      overflowY="auto"
+      h="full"
+      w="full"
+      p="20px">
+      {/* Latest Heading - Bigger */}
+      <Heading
+        as="h1"
+        size="2xl"
+        color="white"
+        mb="24px"
+        fontSize={{ base: "24px", md: "28px", lg: "36px" }}
+        fontWeight="600">
+        Latest
+      </Heading>
 
           <SimpleGrid
             columns={{ base: 1, sm: 1, md: 2, lg: 3, xl: 4 }}
@@ -195,16 +197,14 @@ export default function SubscriptionsPage() {
                 ))}
 
             {/* Loading more cards */}
-            {isLoadingMore && (
-              <SpinnerLoader
-                gridColumn="1 / -1"
-                text="Loading more videos..."
-                textColor="gray.600"
-              />
-            )}
-          </SimpleGrid>
-        </Box>
-      </Basic_layout>
-    </SidebarProvider>
+        {isLoadingMore && (
+          <SpinnerLoader
+            gridColumn="1 / -1"
+            text="Loading more videos..."
+            textColor="gray.600"
+          />
+        )}
+      </SimpleGrid>
+    </Box>
   );
 }

@@ -1,5 +1,3 @@
-import Basic_layout from "../layout/basic_layout";
-import { SidebarProvider } from "../context/SidebarContext";
 import { Flex, Box, Text, Button } from "@chakra-ui/react";
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -8,16 +6,15 @@ export default function NotFoundPage() {
   const location = useLocation();
 
   return (
-    <SidebarProvider>
-      <Basic_layout>
-        <Flex
-          direction="column"
-          minH="100vh"
-          justify="center"
-          align="center"
-          p="24px">
-          <Box
-            bg="gray.900"
+    <Flex
+      direction="column"
+      h="full"
+      w="full"
+      justify="center"
+      align="center"
+      p="24px">
+      <Box
+        bg="gray.900"
             borderColor="gray.700"
             border="1px solid"
             borderRadius="12px"
@@ -75,15 +72,13 @@ export default function NotFoundPage() {
               <Button
                 variant="outline"
                 color="white"
-                __hover={{ bg: "white", color: "black" }}
-                size="md"
-                onClick={() => navigate(-1)}>
-                Go Back
-              </Button>
-            </Box>
-          </Box>
-        </Flex>
-      </Basic_layout>
-    </SidebarProvider>
+            __hover={{ bg: "white", color: "black" }}
+            size="md"
+            onClick={() => navigate(-1)}>
+            Go Back
+          </Button>
+        </Box>
+      </Box>
+    </Flex>
   );
 }

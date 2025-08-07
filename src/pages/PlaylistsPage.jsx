@@ -1,5 +1,3 @@
-import { SidebarProvider } from "../context/SidebarContext";
-import Basic_layout from "../layout/basic_layout";
 import PlaylistCard from "../components/PlaylistCard";
 import {
   SimpleGrid,
@@ -87,88 +85,80 @@ export default function PlaylistsPage() {
 
   if (error) {
     return (
-      <SidebarProvider>
-        <Basic_layout>
-          <Flex
-            justify="center"
-            align="center"
-            minH="50vh"
-            direction="column"
-            gap="16px">
-            <Text color="red.400" fontSize="18px">
-              {error}
-            </Text>
-            <Button
-              colorScheme="red"
-              variant="outline"
-              onClick={() => window.location.reload()}>
-              Try Again
-            </Button>
-          </Flex>
-        </Basic_layout>
-      </SidebarProvider>
+      <Box h="full" w="full" overflowY="auto" p="20px">
+        <Flex
+          justify="center"
+          align="center"
+          minH="50vh"
+          direction="column"
+          gap="16px">
+          <Text color="red.400" fontSize="18px">
+            {error}
+          </Text>
+          <Button
+            colorScheme="red"
+            variant="outline"
+            onClick={() => window.location.reload()}>
+            Try Again
+          </Button>
+        </Flex>
+      </Box>
     );
-  }
+  }  return (
+    <Box h="full" w="full" overflowY="auto" p="20px">
+      {/* Header */}
+      <Box mb="32px">
+        <Heading
+          as="h1"
+          size="2xl"
+          color="white"
+          fontSize={{ base: "28px", md: "36px" }}
+          fontWeight="400"
+          mb="24px">
+          Playlists
+        </Heading>
+      </Box>
 
-  return (
-    <SidebarProvider>
-      <Basic_layout>
-        <Box p="20px" minH="100vh">
-          {/* Header */}
-          <Box mb="32px">
-            <Heading
-              as="h1"
-              size="2xl"
-              color="white"
-              fontSize={{ base: "28px", md: "36px" }}
-              fontWeight="400"
-              mb="24px">
-              Playlists
-            </Heading>
-          </Box>
-
-          {/* Content */}
-          {isLoading ? (
-            <SpinnerLoader
-              color="white"
-              thickness="3px"
-              text="Loading playlists..."
-              textColor="white"
+      {/* Content */}
+      {isLoading ? (
+        <SpinnerLoader
+          color="white"
+          thickness="3px"
+          text="Loading playlists..."
+          textColor="white"
+        />
+      ) : playlists.length === 0 ? (
+        <Flex
+          justify="center"
+          align="center"
+          minH="50vh"
+          direction="column"
+          gap="16px">
+          <Text color="gray.400" fontSize="18px">
+            No playlists found
+          </Text>
+        </Flex>
+      ) : (
+        <SimpleGrid
+          columns={{ base: 1, sm: 1, md: 2, lg: 3, xl: 4 }}
+          spacing="20px"
+          gap={4}
+          w="full">
+          {playlists.map((playlist) => (
+            <PlaylistCard
+              key={playlist.id}
+              id={playlist.id}
+              title={playlist.title}
+              status={playlist.status}
+              lastTimeUpdate={playlist.lastTimeUpdate}
+              videoIds={playlist.videoIds}
+              thumbnail={playlist.thumbnail}
+              description={playlist.description}
+              onClick={handlePlaylistClick}
             />
-          ) : playlists.length === 0 ? (
-            <Flex
-              justify="center"
-              align="center"
-              minH="50vh"
-              direction="column"
-              gap="16px">
-              <Text color="gray.400" fontSize="18px">
-                No playlists found
-              </Text>
-            </Flex>
-          ) : (
-            <SimpleGrid
-              columns={{ base: 1, sm: 1, md: 2, lg: 3, xl: 4 }}
-              spacing="20px"
-              gap={4}
-              w="full">
-              {playlists.map((playlist) => (
-                <PlaylistCard
-                  key={playlist.id}
-                  id={playlist.id}
-                  title={playlist.title}
-                  status={playlist.status}
-                  lastTimeUpdate={playlist.lastTimeUpdate}
-                  videoIds={playlist.videoIds}
-                  thumbnail={playlist.thumbnail}
-                  description={playlist.description}
-                  onClick={handlePlaylistClick}
-                />
-              ))}
-            </SimpleGrid>
-          )}
-        </Box>
-      </Basic_layout>
-    </SidebarProvider>
+          ))}
+        </SimpleGrid>
+      )}
+    </Box>
   );
 }

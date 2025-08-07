@@ -2,7 +2,7 @@ import { Box, VStack, Text, Avatar, Flex } from "@chakra-ui/react";
 import { useSidebar } from "../context/SidebarContext";
 import { useLocation } from "react-router-dom";
 import AnchorButton from "./AnchorButton";
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo, useMemo } from "react";
 import IconButton from "./IconButton";
 
 // Import icons
@@ -22,7 +22,7 @@ import YouTubeLogo from "../assets/icons/black_icons/YouTube_logo.svg";
 //import hooks
 import data_fetch from "../hooks/data_fetch";
 
-const Sidebar = () => {
+const Sidebar = memo(() => {
   const [subscriptions, setSubscriptions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showAllSubscriptions, setShowAllSubscriptions] = useState(false);
@@ -79,40 +79,74 @@ const Sidebar = () => {
   const displayedSubscriptions = showAllSubscriptions
     ? subscriptions
     : subscriptions.slice(0, 6);
-  // Collapsed sidebar item component
-  const CollapsedSidebarItem = ({ icon, text, href, isActive = false }) => (
-    <Box
-      as="a"
-      href={href}
-      display="flex"
-      flexDirection="column"
-      alignItems="center"
-      justifyContent="center"
-      w="full"
-      py={3}
-      px={2}
-      bg={isActive ? "rgba(255, 255, 255, 0.1)" : "transparent"}
-      color="white"
-      textDecoration="none"
-      borderRadius="md"
-      transition="all 0.2s ease-in-out"
-      _hover={{
-        bg: "rgba(255, 255, 255, 0.1)",
-        textDecoration: "none",
-      }}>
-      <img
-        src={icon}
-        alt={text}
-        style={{ width: "24px", height: "24px", marginBottom: "4px" }}
-      />
-      <Text
-        fontSize="10px"
-        fontWeight="400"
-        textAlign="center"
-        lineHeight="1.2">
-        {text}
-      </Text>
-    </Box>
+
+  // Memoized collapsed sidebar item component
+  const CollapsedSidebarItem = memo(
+    ({ icon, text, href, isActive = false }) => (
+      <Box
+        as="a"
+        href={href}
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        justifyContent="center"
+        w="full"
+        py={3}
+        px={2}
+        bg={isActive ? "rgba(255, 255, 255, 0.1)" : "transparent"}
+        color="white"
+        textDecoration="none"
+        borderRadius="md"
+        transition="all 0.2s ease-in-out"
+        _hover={{
+          bg: "rgba(255, 255, 255, 0.1)",
+          textDecoration: "none",
+        }}>
+        <img
+          src={icon}
+          alt={text}
+          style={{ width: "24px", height: "24px", marginBottom: "4px" }}
+        />
+        <Text
+          fontSize="10px"
+          fontWeight="400"
+          textAlign="center"
+          lineHeight="1.2">
+          {text}
+        </Text>
+      </Box>
+    )
+  );
+
+  // Memoize collapsed navigation items to prevent re-renders
+  const collapsedNavItems = useMemo(
+    () => [
+      {
+        icon: homeIcon,
+        text: "Home",
+        href: "/",
+        isActive: !isWatchPage && location.pathname === "/",
+      },
+      {
+        icon: shortsIcon,
+        text: "Shorts",
+        href: "/shorts",
+        isActive: !isWatchPage && location.pathname === "/shorts",
+      },
+      {
+        icon: subscriptionIcon,
+        text: "Subscriptions",
+        href: "/subscriptions",
+        isActive: !isWatchPage && location.pathname === "/subscriptions",
+      },
+      {
+        icon: exploreIcon,
+        text: "Explore",
+        href: "/explore",
+        isActive: !isWatchPage && location.pathname === "/explore",
+      },
+    ],
+    [isWatchPage, location.pathname]
   );
 
   if (isCollapsed) {
@@ -125,34 +159,66 @@ const Sidebar = () => {
         overflowY="auto"
         className="!p-2">
         <VStack spacing={3} align="stretch">
-          <CollapsedSidebarItem
-            icon={homeIcon}
-            text="Home"
-            href="/"
-            isActive={!isWatchPage && location.pathname === "/"}
-          />
-          <CollapsedSidebarItem
-            icon={shortsIcon}
-            text="Shorts"
-            href="/shorts"
-            isActive={!isWatchPage && location.pathname === "/shorts"}
-          />
-          <CollapsedSidebarItem
-            icon={subscriptionIcon}
-            text="Subscriptions"
-            href="/subscriptions"
-            isActive={!isWatchPage && location.pathname === "/subscriptions"}
-          />
-          <CollapsedSidebarItem
-            icon={exploreIcon}
-            text="Explore"
-            href="/explore"
-            isActive={!isWatchPage && location.pathname === "/explore"}
-          />
+          {collapsedNavItems.map((item) => (
+            <CollapsedSidebarItem
+              key={item.href}
+              icon={item.icon}
+              text={item.text}
+              href={item.href}
+              isActive={item.isActive}
+            />
+          ))}
         </VStack>
       </Box>
     );
   }
+
+  // Memoize subscription items to prevent re-renders
+  const memoizedSubscriptions = useMemo(() => {
+    if (loading) {
+      return (
+        <Box className="!px-3 !py-2">
+          <Text fontSize="14px" color="#aaaaaa">
+            Loading subscriptions...
+          </Text>
+        </Box>
+      );
+    }
+
+    if (subscriptions.length === 0) {
+      return (
+        <Box className="!px-3 !py-2">
+          <Text fontSize="14px" color="#aaaaaa">
+            No subscriptions found
+          </Text>
+        </Box>
+      );
+    }
+
+    return displayedSubscriptions.map((sub, index) => (
+      <AnchorButton
+        key={`${sub.name}-${index}`}
+        icon={sub.avatar}
+        text={sub.name}
+        href={`/channel/${sub.name}`}
+        className="!px-3 !py-2">
+        <Flex align="center" className="!gap-3" w="full">
+          <Avatar size="sm" src={sub.avatar} />
+          <Text
+            fontSize="14px"
+            color="white"
+            flex={1}
+            overflow="hidden"
+            textOverflow="ellipsis">
+            {sub.name}
+          </Text>
+          {sub.isLive && (
+            <Box w="8px" h="8px" bg="#ff0000" borderRadius="50%" />
+          )}
+        </Flex>
+      </AnchorButton>
+    ));
+  }, [loading, subscriptions, displayedSubscriptions]);
 
   return (
     <Box
@@ -253,45 +319,7 @@ const Sidebar = () => {
           Subscriptions
         </Text>
 
-        {loading ? (
-          <Box className="!px-3 !py-2">
-            <Text fontSize="14px" color="#aaaaaa">
-              Loading subscriptions...
-            </Text>
-          </Box>
-        ) : subscriptions.length > 0 ? (
-          <>
-            {displayedSubscriptions.map((sub, index) => (
-              <AnchorButton
-                key={index}
-                icon={sub.avatar}
-                text={sub.name}
-                href={`/channel/${sub.name}`}
-                className="!px-3 !py-2">
-                <Flex align="center" className="!gap-3" w="full">
-                  <Avatar size="sm" src={sub.avatar} />
-                  <Text
-                    fontSize="14px"
-                    color="white"
-                    flex={1}
-                    overflow="hidden"
-                    textOverflow="ellipsis">
-                    {sub.name}
-                  </Text>
-                  {sub.isLive && (
-                    <Box w="8px" h="8px" bg="#ff0000" borderRadius="50%" />
-                  )}
-                </Flex>
-              </AnchorButton>
-            ))}
-          </>
-        ) : (
-          <Box className="!px-3 !py-2">
-            <Text fontSize="14px" color="#aaaaaa">
-              No subscriptions found
-            </Text>
-          </Box>
-        )}
+        {memoizedSubscriptions}
 
         {!loading && subscriptions.length > 6 && (
           <Box
@@ -355,6 +383,6 @@ const Sidebar = () => {
       </VStack>
     </Box>
   );
-};
+});
 
 export default Sidebar;

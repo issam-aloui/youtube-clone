@@ -1,10 +1,8 @@
-import Basic_layout from "../layout/basic_layout";
 import VideoPlayer from "../components/VideoPlayer";
 import SideRecommendation from "../components/SideRecommendation";
 import PlaylistSidebar from "../components/PlaylistSidebar";
 import IconButton from "../components/IconButton";
 import CommentSection from "../components/CommentSection";
-import { SidebarProvider } from "../context/SidebarContext";
 import { useFormatNumber, useFormatTimeAgo } from "../hooks/formatters";
 import { addToWatchHistory } from "../hooks/watchHistory";
 import {
@@ -129,17 +127,16 @@ export default function WatchPage({
   // If critical data is missing, show error state
   if (isMissingCriticalData) {
     return (
-      <SidebarProvider>
-        <Basic_layout>
-          <Flex
-            direction="column"
-            minH="100vh"
-            justify="center"
-            align="center"
-            p="24px">
-            <Box
-              bg="red.900"
-              borderColor="red.500"
+      <Flex
+        direction="column"
+        h="full"
+        w="full"
+        justify="center"
+        align="center"
+        p="24px">
+        <Box
+          bg="red.900"
+          borderColor="red.500"
               border="1px solid"
               borderRadius="12px"
               p="32px"
@@ -180,22 +177,18 @@ export default function WatchPage({
                 colorScheme="red"
                 variant="outline"
                 size="md"
-                color="white"
-                onClick={() => window.history.back()}>
-                Go Back
-              </Button>
-            </Box>
-          </Flex>
-        </Basic_layout>
-      </SidebarProvider>
+            color="white"
+            onClick={() => window.history.back()}>
+            Go Back
+          </Button>
+        </Box>
+      </Flex>
     );
   }
 
   return (
-    <SidebarProvider>
-      <Basic_layout ref={watchPageRef}>
-        <Flex direction="row" minH="100vh">
-          {/* Optional Data Warning */}
+    <Flex direction="row" ref={watchPageRef} h="full" w="full">
+      {/* Optional Data Warning */}
           {hasMissingOptionalData && (
             <Box
               position="fixed"
@@ -574,13 +567,11 @@ export default function WatchPage({
               />
             ) : (
               <SideRecommendation
-                scrollContainerRef={watchPageRef}
-                currentVideoId={videoId}
-              />
-            )}
-          </Box>
-        </Flex>
-      </Basic_layout>
-    </SidebarProvider>
+            scrollContainerRef={watchPageRef}
+            currentVideoId={videoId}
+          />
+        )}
+      </Box>
+    </Flex>
   );
 }
