@@ -104,7 +104,8 @@ export default function PlaylistsPage() {
         </Flex>
       </Box>
     );
-  }  return (
+  }
+  return (
     <Box h="full" w="full" overflowY="auto" p="20px">
       {/* Header */}
       <Box mb="32px">

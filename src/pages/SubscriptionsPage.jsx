@@ -168,35 +168,35 @@ export default function SubscriptionsPage() {
         Latest
       </Heading>
 
-          <SimpleGrid
-            columns={{ base: 1, sm: 1, md: 2, lg: 3, xl: 4 }}
-            spacing="20px"
-            gap={4}
-            w="full">
-            {isLoading
-              ? // Show initial loading cards
-                Array.from({ length: 10 }, (_, index) => (
-                  <VideoCard key={`loading-${index}`} isLoading={true} />
-                ))
-              : // Show actual video cards
-                displayedVideos.map((video) => (
-                  <VideoCard
-                    key={video.id}
-                    thumbnail={video.thumbnail}
-                    title={video.title}
-                    channelName={video.channelName}
-                    channelAvatar={video.channelAvatar}
-                    views={video.views}
-                    uploadDate={video.uploadDate}
-                    duration={video.duration}
-                    isVerified={video.isVerified}
-                    onVideoClick={() => handleVideoClick(video.id)}
-                    onChannelClick={() => handleChannelClick(video.channelName)}
-                    onMoreClick={() => handleMoreClick(video.id)}
-                  />
-                ))}
+      <SimpleGrid
+        columns={{ base: 1, sm: 1, md: 2, lg: 3, xl: 4 }}
+        spacing="20px"
+        gap={4}
+        w="full">
+        {isLoading
+          ? // Show initial loading cards
+            Array.from({ length: 10 }, (_, index) => (
+              <VideoCard key={`loading-${index}`} isLoading={true} />
+            ))
+          : // Show actual video cards
+            displayedVideos.map((video) => (
+              <VideoCard
+                key={video.id}
+                thumbnail={video.thumbnail}
+                title={video.title}
+                channelName={video.channelName}
+                channelAvatar={video.channelAvatar}
+                views={video.views}
+                uploadDate={video.uploadDate}
+                duration={video.duration}
+                isVerified={video.isVerified}
+                onVideoClick={() => handleVideoClick(video.id)}
+                onChannelClick={() => handleChannelClick(video.channelName)}
+                onMoreClick={() => handleMoreClick(video.id)}
+              />
+            ))}
 
-            {/* Loading more cards */}
+        {/* Loading more cards */}
         {isLoadingMore && (
           <SpinnerLoader
             gridColumn="1 / -1"

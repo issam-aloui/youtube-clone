@@ -94,6 +94,8 @@ export const addSubscribedChannel = (channelName) => {
     if (!subscribed.includes(channelName)) {
       subscribed.push(channelName);
       localStorage.setItem("subscribedChannels", JSON.stringify(subscribed));
+      // Dispatch custom event for real-time updates
+      window.dispatchEvent(new CustomEvent("subscriptionChange"));
     }
     return true;
   } catch (error) {
@@ -107,6 +109,8 @@ export const removeSubscribedChannel = (channelName) => {
     const subscribed = getSubscribedChannels();
     const updated = subscribed.filter((name) => name !== channelName);
     localStorage.setItem("subscribedChannels", JSON.stringify(updated));
+    // Dispatch custom event for real-time updates
+    window.dispatchEvent(new CustomEvent("subscriptionChange"));
     return true;
   } catch (error) {
     console.error("Error removing subscribed channel:", error);

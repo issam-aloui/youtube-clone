@@ -8,9 +8,9 @@ import { useSidebar } from "../context/SidebarContext";
 const LayoutContent = () => {
   const { isCollapsed, collapseSidebar } = useSidebar();
   const location = useLocation();
-  
+
   // Check if we're on the watch page to potentially use different layout
-  const isWatchPage = location.pathname.startsWith('/watch');
+  const isWatchPage = location.pathname.startsWith("/watch");
 
   return (
     <div className="h-screen w-screen overflow-hidden bg-yt-black-12">
@@ -37,11 +37,11 @@ const LayoutContent = () => {
         {/* Desktop Sidebar - Hidden on mobile, responsive widths on larger screens */}
         <div
           className={`hidden sm:block transition-all duration-300 ease-in-out ${
-            isCollapsed 
-              ? "w-[72px]" 
-              : isWatchPage 
-                ? "w-[240px] md:w-[280px]" 
-                : "w-[240px] md:w-[280px] lg:w-[300px] xl:w-[320px]"
+            isCollapsed
+              ? "w-[72px]"
+              : isWatchPage
+              ? "w-[240px] md:w-[280px]"
+              : "w-[240px] md:w-[280px] lg:w-[300px] xl:w-[320px]"
           } border-r border-yt-black-32 overflow-hidden`}>
           <Sidebar />
         </div>

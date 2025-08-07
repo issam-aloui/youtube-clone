@@ -21,6 +21,7 @@ import HamburgerIcon from "../assets/icons/white_icons/hambarger.svg";
 import YouTubeLogo from "../assets/icons/black_icons/YouTube_logo.svg";
 //import hooks
 import data_fetch from "../hooks/data_fetch";
+import { getSubscribedChannels } from "../hooks/userInteractions";
 
 const Sidebar = memo(() => {
   const [subscriptions, setSubscriptions] = useState([]);
@@ -32,40 +33,54 @@ const Sidebar = memo(() => {
   const isWatchPage = location.pathname.startsWith("/watch");
 
   useEffect(() => {
-    // Fetch data from public/data/subscriptions.json
-    const fetchSubscriptions = async () => {
+    // Load subscriptions from localStorage
+    const loadSubscriptions = () => {
       try {
         setLoading(true);
-        data_fetch("/data/subscriptions.json").then((data) => {
-          setSubscriptions(data);
-        });
-        // Fetch from public folder
+        const subscribedChannelNames = getSubscribedChannels();
+
+        // Create subscription objects from channel names
+        const subscriptionData = subscribedChannelNames.map((channelName) => ({
+          name: channelName,
+          avatar: `data:image/svg+xml,%3csvg width='32' height='32' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='32' height='32' fill='%23666'/%3e%3ctext x='50%25' y='50%25' font-size='12' fill='white' text-anchor='middle' dy='.3em'%3e${channelName
+            .charAt(0)
+            .toUpperCase()}%3c/text%3e%3c/svg%3e`,
+          isLive: Math.random() > 0.7, // Random live status for demo
+        }));
+
+        setSubscriptions(subscriptionData);
       } catch (error) {
-        console.error("Error fetching subscriptions:", error);
-
-        // Fallback to mock data if fetch fails
-        const mockData = [
-          {
-            name: "Thebausffs",
-            avatar:
-              "data:image/svg+xml,%3csvg width='32' height='32' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='32' height='32' fill='%23666'/%3e%3ctext x='50%25' y='50%25' font-size='12' fill='white' text-anchor='middle' dy='.3em'%3eT%3c/text%3e%3c/svg%3e",
-            isLive: true,
-          },
-          {
-            name: "SANKARA",
-            avatar:
-              "data:image/svg+xml,%3csvg width='32' height='32' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='32' height='32' fill='%23666'/%3e%3ctext x='50%25' y='50%25' font-size='12' fill='white' text-anchor='middle' dy='.3em'%3eS%3c/text%3e%3c/svg%3e",
-            isLive: true,
-          },
-        ];
-
-        setSubscriptions(mockData);
+        console.error("Error loading subscriptions");
+        setSubscriptions([]);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchSubscriptions();
+    loadSubscriptions();
+
+    // Listen for localStorage changes to update subscriptions in real-time
+    const handleStorageChange = (e) => {
+      if (e.key === "subscribedChannels") {
+        loadSubscriptions();
+      }
+    };
+
+    // Listen for custom subscription events (for same-tab updates)
+    const handleSubscriptionChange = () => {
+      loadSubscriptions();
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+    window.addEventListener("subscriptionChange", handleSubscriptionChange);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+      window.removeEventListener(
+        "subscriptionChange",
+        handleSubscriptionChange
+      );
+    };
   }, []);
 
   const { isCollapsed, toggleSidebar } = useSidebar();
@@ -173,52 +188,101 @@ const Sidebar = memo(() => {
     );
   }
 
-  // Memoize subscription items to prevent re-renders
-  const memoizedSubscriptions = useMemo(() => {
-    if (loading) {
-      return (
-        <Box className="!px-3 !py-2">
-          <Text fontSize="14px" color="#aaaaaa">
-            Loading subscriptions...
-          </Text>
-        </Box>
-      );
-    }
+  // Memoized Subscription Section Component
+  const SubscriptionSection = memo(
+    ({
+      loading,
+      subscriptions,
+      displayedSubscriptions,
+      showAllSubscriptions,
+      handleShowMoreSubscriptions,
+    }) => (
+      <>
+        {/* Subscriptions */}
+        <Text
+          fontSize="16px"
+          fontWeight="500"
+          color="white"
+          className="!px-3 !py-2">
+          Subscriptions
+        </Text>
 
-    if (subscriptions.length === 0) {
-      return (
-        <Box className="!px-3 !py-2">
-          <Text fontSize="14px" color="#aaaaaa">
-            No subscriptions found
-          </Text>
-        </Box>
-      );
-    }
+        {loading ? (
+          <Box className="!px-3 !py-2">
+            <Text fontSize="14px" color="#aaaaaa">
+              Loading subscriptions...
+            </Text>
+          </Box>
+        ) : subscriptions.length === 0 ? (
+          <Box className="!px-3 !py-2">
+            <Text fontSize="14px" color="#aaaaaa">
+              No subscriptions found
+            </Text>
+          </Box>
+        ) : (
+          displayedSubscriptions.map((sub, index) => (
+            <AnchorButton
+              key={`${sub.name}-${index}`}
+              icon={sub.avatar}
+              text={sub.name}
+              href={`/channel/${sub.name}`}
+              className="!px-3 !py-2">
+              <Flex align="center" className="!gap-3" w="full">
+                <Avatar size="sm" src={sub.avatar} />
+                <Text
+                  fontSize="14px"
+                  color="white"
+                  flex={1}
+                  overflow="hidden"
+                  textOverflow="ellipsis">
+                  {sub.name}
+                </Text>
+                {sub.isLive && (
+                  <Box w="8px" h="8px" bg="#ff0000" borderRadius="50%" />
+                )}
+              </Flex>
+            </AnchorButton>
+          ))
+        )}
 
-    return displayedSubscriptions.map((sub, index) => (
-      <AnchorButton
-        key={`${sub.name}-${index}`}
-        icon={sub.avatar}
-        text={sub.name}
-        href={`/channel/${sub.name}`}
-        className="!px-3 !py-2">
-        <Flex align="center" className="!gap-3" w="full">
-          <Avatar size="sm" src={sub.avatar} />
-          <Text
-            fontSize="14px"
+        {!loading && subscriptions.length > 6 && (
+          <Box
+            as="button"
+            onClick={handleShowMoreSubscriptions}
+            display="flex"
+            alignItems="center"
+            className="!gap-3 !py-2 !px-3"
+            w="full"
+            bg="transparent"
             color="white"
-            flex={1}
-            overflow="hidden"
-            textOverflow="ellipsis">
-            {sub.name}
-          </Text>
-          {sub.isLive && (
-            <Box w="8px" h="8px" bg="#ff0000" borderRadius="50%" />
-          )}
-        </Flex>
-      </AnchorButton>
-    ));
-  }, [loading, subscriptions, displayedSubscriptions]);
+            textDecoration="none"
+            borderRadius="md"
+            border="none"
+            cursor="pointer"
+            transition="all 0.2s ease-in-out"
+            _hover={{
+              bg: "rgba(255, 255, 255, 0.1)",
+            }}>
+            <img
+              src={down_arrow}
+              alt="Show more"
+              style={{
+                width: "20px",
+                height: "20px",
+                transform: showAllSubscriptions
+                  ? "rotate(180deg)"
+                  : "rotate(0deg)",
+                transition: "transform 0.2s ease-in-out",
+              }}
+            />
+            <Text fontSize="14px" fontWeight="400">
+              {showAllSubscriptions ? "Show less" : "Show more"}
+            </Text>
+          </Box>
+        )}
+      </>
+    )
+  );
 
   return (
     <Box
@@ -310,52 +374,13 @@ const Sidebar = memo(() => {
 
         <Box h="1px" bg="#323232" className="!my-3" />
 
-        {/* Subscriptions */}
-        <Text
-          fontSize="16px"
-          fontWeight="500"
-          color="white"
-          className="!px-3 !py-2">
-          Subscriptions
-        </Text>
-
-        {memoizedSubscriptions}
-
-        {!loading && subscriptions.length > 6 && (
-          <Box
-            as="button"
-            onClick={handleShowMoreSubscriptions}
-            display="flex"
-            alignItems="center"
-            className="!gap-3 !py-2 !px-3"
-            w="full"
-            bg="transparent"
-            color="white"
-            textDecoration="none"
-            borderRadius="md"
-            border="none"
-            cursor="pointer"
-            transition="all 0.2s ease-in-out"
-            _hover={{
-              bg: "rgba(255, 255, 255, 0.1)",
-            }}>
-            <img
-              src={down_arrow}
-              alt="Show more"
-              style={{
-                width: "20px",
-                height: "20px",
-                transform: showAllSubscriptions
-                  ? "rotate(180deg)"
-                  : "rotate(0deg)",
-                transition: "transform 0.2s ease-in-out",
-              }}
-            />
-            <Text fontSize="14px" fontWeight="400">
-              {showAllSubscriptions ? "Show less" : "Show more"}
-            </Text>
-          </Box>
-        )}
+        <SubscriptionSection
+          loading={loading}
+          subscriptions={subscriptions}
+          displayedSubscriptions={displayedSubscriptions}
+          showAllSubscriptions={showAllSubscriptions}
+          handleShowMoreSubscriptions={handleShowMoreSubscriptions}
+        />
 
         <Box h="1px" bg="#323232" className="!my-3" />
 

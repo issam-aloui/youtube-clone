@@ -14,18 +14,17 @@ const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 export default function App() {
   return (
     <Router>
-     
-        <Routes>
-          <Route element={<Layout />}>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/subscriptions" element={<SubscriptionsPage />} />
-            <Route path="/history" element={<HistoryPage />} />
-            <Route path="/playlists" element={<PlaylistsPage />} />
-            <Route path="/playlist" element={<PlaylistDetailPage />} />
-            <Route path="/watch/:id" element={<WatchPageWrapper />} />
-            <Route path="*" element={<NotFoundPage />} />
-          </Route>
-        </Routes>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/subscriptions" element={<SubscriptionsPage />} />
+          <Route path="/history" element={<HistoryPage />} />
+          <Route path="/playlists" element={<PlaylistsPage />} />
+          <Route path="/playlist" element={<PlaylistDetailPage />} />
+          <Route path="/watch/:id" element={<WatchPageWrapper />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Route>
+      </Routes>
     </Router>
   );
 }
