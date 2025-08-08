@@ -1,5 +1,6 @@
 import { Box, Text, Flex } from "@chakra-ui/react";
 import { memo } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AnchorButton = memo(
   ({
@@ -13,19 +14,23 @@ const AnchorButton = memo(
     fontSize = "14px",
     ...props
   }) => {
+    const navigate = useNavigate();
+
     const handleClick = (e) => {
+      e.preventDefault();
       if (onClick) {
-        e.preventDefault();
         onClick();
+      } else if (href !== "#") {
+        navigate(href);
       }
     };
 
     return (
       <Box
-        as="a"
-        href={href}
+        as="button"
         onClick={handleClick}
         display="flex"
+        cursor="pointer"
         alignItems="center"
         w="full"
         bg={isActive ? "rgba(255, 255, 255, 0.1)" : bg}

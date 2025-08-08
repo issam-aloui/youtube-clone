@@ -1,6 +1,6 @@
 import { Box, VStack, Text, Avatar, Flex } from "@chakra-ui/react";
 import { useSidebar } from "../context/SidebarContext";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import AnchorButton from "./AnchorButton";
 import { useEffect, useState, memo, useMemo } from "react";
 import IconButton from "./IconButton";
@@ -28,6 +28,7 @@ const Sidebar = memo(() => {
   const [loading, setLoading] = useState(true);
   const [showAllSubscriptions, setShowAllSubscriptions] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   // Don't show active states on watch pages
   const isWatchPage = location.pathname.startsWith("/watch");
@@ -97,40 +98,51 @@ const Sidebar = memo(() => {
 
   // Memoized collapsed sidebar item component
   const CollapsedSidebarItem = memo(
-    ({ icon, text, href, isActive = false }) => (
-      <Box
-        as="a"
-        href={href}
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        justifyContent="center"
-        w="full"
-        py={3}
-        px={2}
-        bg={isActive ? "rgba(255, 255, 255, 0.1)" : "transparent"}
-        color="white"
-        textDecoration="none"
-        borderRadius="md"
-        transition="all 0.2s ease-in-out"
-        _hover={{
-          bg: "rgba(255, 255, 255, 0.1)",
-          textDecoration: "none",
-        }}>
-        <img
-          src={icon}
-          alt={text}
-          style={{ width: "24px", height: "24px", marginBottom: "4px" }}
-        />
-        <Text
-          fontSize="10px"
-          fontWeight="400"
-          textAlign="center"
-          lineHeight="1.2">
-          {text}
-        </Text>
-      </Box>
-    )
+    ({ icon, text, href, isActive = false }) => {
+      const handleClick = (e) => {
+        e.preventDefault();
+        if (href !== "#") {
+          navigate(href);
+        }
+      };
+
+      return (
+        <Box
+          as="button"
+          onClick={handleClick}
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          justifyContent="center"
+          w="full"
+          py={3}
+          px={2}
+          bg={isActive ? "rgba(255, 255, 255, 0.1)" : "transparent"}
+          color="white"
+          textDecoration="none"
+          borderRadius="md"
+          border="none"
+          cursor="pointer"
+          transition="all 0.2s ease-in-out"
+          _hover={{
+            bg: "rgba(255, 255, 255, 0.1)",
+            textDecoration: "none",
+          }}>
+          <img
+            src={icon}
+            alt={text}
+            style={{ width: "24px", height: "24px", marginBottom: "4px" }}
+          />
+          <Text
+            fontSize="10px"
+            fontWeight="400"
+            textAlign="center"
+            lineHeight="1.2">
+            {text}
+          </Text>
+        </Box>
+      );
+    }
   );
 
   // Memoize collapsed navigation items to prevent re-renders

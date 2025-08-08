@@ -13,7 +13,7 @@ const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 
 export default function App() {
   return (
-    <Router>
+    <Router basename="/youtube-clone">
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<HomePage />} />
