@@ -1,0 +1,1 @@
+async function e(t){try{const o=t.startsWith("/")?`${"/youtube-clone/".slice(0,-1)}${t}`:t,r=await fetch(o);if(!r.ok)throw new Error(`HTTP error! status: ${r.status}`);return await r.json()}catch(a){return console.error("Error fetching data:",a),null}}export{e as d};

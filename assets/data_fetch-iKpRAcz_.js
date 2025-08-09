@@ -1,1 +1,0 @@
-async function o(t){try{const r=await fetch(t);if(!r.ok)throw new Error(`HTTP error! status: ${r.status}`);return await r.json()}catch(r){return console.error("Error fetching data:",r),null}}export{o as d};
