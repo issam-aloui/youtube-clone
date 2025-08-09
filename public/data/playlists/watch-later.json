@@ -1,0 +1,10 @@
+{
+  "id": "watch-later",
+  "title": "Watch Later",
+  "status": "private",
+  "lastTimeUpdate": "2024-08-05T12:00:00Z",
+  "videoIds": [],
+  "thumbnail": null,
+  "description": "Collection of all videos to watch later from various channels.",
+  "isDynamic": true
+}

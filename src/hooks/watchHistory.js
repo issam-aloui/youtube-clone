@@ -3,7 +3,11 @@
 // Function to fetch individual video details by ID
 export const fetchVideoById = async (videoId) => {
   try {
-    const response = await fetch(`/data/videos/${videoId}.json`);
+    // Use Vite's BASE_URL environment variable for proper base path handling
+    const basePath = import.meta.env.BASE_URL || "/";
+    const videoPath = `/data/videos/${videoId}.json`;
+    const fullPath = `${basePath.slice(0, -1)}${videoPath}`;
+    const response = await fetch(fullPath);
     if (!response.ok) {
       throw new Error(`Failed to fetch video ${videoId}`);
     }
