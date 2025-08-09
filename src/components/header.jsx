@@ -1,6 +1,6 @@
 import IconButton from "./IconButton";
 import HamburgerIcon from "../assets/icons/white_icons/hambarger.svg";
-import YouTubeLogo from "../assets/icons/black_icons/YouTube_logo.svg";
+import YouTubeLogo from "../assets/icons/black_icons/Youtube_logo.svg";
 import SearchBar from "./SearchBar";
 import notificationsIcon from "../assets/icons/white_icons/notifications.svg";
 import createIcon from "../assets/icons/white_icons/create-1.svg";

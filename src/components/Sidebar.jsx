@@ -18,7 +18,7 @@ import downloadsIcon from "../assets/icons/white_icons/library.svg"; // Changed 
 import exploreIcon from "../assets/icons/white_icons/explore.svg";
 import down_arrow from "../assets/icons/white_icons/down_arrow.svg";
 import HamburgerIcon from "../assets/icons/white_icons/hambarger.svg";
-import YouTubeLogo from "../assets/icons/black_icons/YouTube_logo.svg";
+import YouTubeLogo from "../assets/icons/black_icons/Youtube_logo.svg";
 //import hooks
 import data_fetch from "../hooks/data_fetch";
 import { getSubscribedChannels } from "../hooks/userInteractions";
