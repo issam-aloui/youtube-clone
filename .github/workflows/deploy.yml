@@ -3,7 +3,10 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main  # Or change to your default branch
+      - main  # Or your default branch
+
+permissions:
+  contents: write  # ✅ Needed so the bot can push to gh-pages
 
 jobs:
   deploy:
