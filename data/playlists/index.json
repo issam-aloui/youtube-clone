@@ -1,8 +1,10 @@
 [
+  "liked-videos",
+  "watch-later",
   "courses",
   "approved",
   "religious-series",
-  "frontend-dev", 
+  "frontend-dev",
   "python-course",
   "linux-hackers"
 ]

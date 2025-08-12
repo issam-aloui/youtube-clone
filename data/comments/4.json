@@ -1,0 +1,74 @@
+[
+  {
+    "id": "channel-4-1703788800000",
+    "username": "Sintel Productions",
+    "userAvatar": "https://i.pravatar.cc/150?img=4",
+    "commentText": "You better subscribe... I know where you live 😈",
+    "timestamp": "2024-01-18T10:00:00.000Z",
+    "likes": 2134,
+    "dislikes": 9,
+    "replies": [
+      {
+        "id": "reply-4-1703788860000",
+        "username": "FantasyFan",
+        "userAvatar": "https://i.pravatar.cc/150?img=95",
+        "commentText": "Already subscribed! This channel creates magic ✨",
+        "timestamp": "2024-01-18T10:01:00.000Z",
+        "likes": 187,
+        "dislikes": 0,
+        "replies": [],
+        "isPinned": false,
+        "isChannelOwner": false,
+        "isLiked": false,
+        "isDisliked": false
+      }
+    ],
+    "isPinned": true,
+    "isChannelOwner": true,
+    "isLiked": false,
+    "isDisliked": false
+  },
+  {
+    "id": "user-4-1703789400000",
+    "username": "EpicAdventures",
+    "userAvatar": "https://i.pravatar.cc/150?img=96",
+    "commentText": "Sintel is an absolute masterpiece! The emotional depth and stunning visuals make this a true work of art 🗡️⚔️",
+    "timestamp": "2024-01-18T10:10:00.000Z",
+    "likes": 789,
+    "dislikes": 3,
+    "replies": [
+      {
+        "id": "reply-4-1703789460000",
+        "username": "gigachad",
+        "userAvatar": "https://i.pravatar.cc/150?img=99",
+        "commentText": "The dragon scenes gave me chills! Incredible animation",
+        "timestamp": "2024-01-18T10:11:00.000Z",
+        "likes": 156,
+        "dislikes": 1,
+        "replies": [],
+        "isPinned": false,
+        "isChannelOwner": false,
+        "isLiked": false,
+        "isDisliked": false
+      }
+    ],
+    "isPinned": false,
+    "isChannelOwner": false,
+    "isLiked": false,
+    "isDisliked": false
+  },
+  {
+    "id": "user-4-1703790000000",
+    "username": "StorytellerPro",
+    "userAvatar": "https://i.pravatar.cc/150?img=97",
+    "commentText": "The narrative structure is brilliant. So much emotion conveyed in such a short time! 😭💕",
+    "timestamp": "2024-01-18T10:20:00.000Z",
+    "likes": 567,
+    "dislikes": 5,
+    "replies": [],
+    "isPinned": false,
+    "isChannelOwner": false,
+    "isLiked": false,
+    "isDisliked": false
+  }
+]

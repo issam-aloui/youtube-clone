@@ -1,0 +1,74 @@
+[
+  {
+    "id": "channel-5-1703875200000",
+    "username": "Tears of Steel",
+    "userAvatar": "https://i.pravatar.cc/150?img=5",
+    "commentText": "You better subscribe... I know where you live 😈",
+    "timestamp": "2024-01-19T10:00:00.000Z",
+    "likes": 1678,
+    "dislikes": 11,
+    "replies": [
+      {
+        "id": "reply-5-1703875260000",
+        "username": "SciFiFanatic",
+        "userAvatar": "https://i.pravatar.cc/150?img=98",
+        "commentText": "This is the best sci-fi channel ever! Instant subscribe! 🚀",
+        "timestamp": "2024-01-19T10:01:00.000Z",
+        "likes": 234,
+        "dislikes": 0,
+        "replies": [],
+        "isPinned": false,
+        "isChannelOwner": false,
+        "isLiked": false,
+        "isDisliked": false
+      }
+    ],
+    "isPinned": true,
+    "isChannelOwner": true,
+    "isLiked": false,
+    "isDisliked": false
+  },
+  {
+    "id": "user-5-1703875800000",
+    "username": "FuturisticVisions",
+    "userAvatar": "https://i.pravatar.cc/150?img=100",
+    "commentText": "The cyberpunk aesthetics are absolutely stunning! This feels like a glimpse into the future 🤖⚡",
+    "timestamp": "2024-01-19T10:10:00.000Z",
+    "likes": 892,
+    "dislikes": 6,
+    "replies": [
+      {
+        "id": "reply-5-1703875860000",
+        "username": "gigachad",
+        "userAvatar": "https://i.pravatar.cc/150?img=99",
+        "commentText": "The visual effects are mind-blowing! How did they do this?",
+        "timestamp": "2024-01-19T10:11:00.000Z",
+        "likes": 178,
+        "dislikes": 0,
+        "replies": [],
+        "isPinned": false,
+        "isChannelOwner": false,
+        "isLiked": false,
+        "isDisliked": false
+      }
+    ],
+    "isPinned": false,
+    "isChannelOwner": false,
+    "isLiked": false,
+    "isDisliked": false
+  },
+  {
+    "id": "user-5-1703876400000",
+    "username": "TechNoir",
+    "userAvatar": "https://i.pravatar.cc/150?img=101",
+    "commentText": "This perfectly captures the essence of cyberpunk cinema. The atmosphere is incredible! 🌃",
+    "timestamp": "2024-01-19T10:20:00.000Z",
+    "likes": 445,
+    "dislikes": 3,
+    "replies": [],
+    "isPinned": false,
+    "isChannelOwner": false,
+    "isLiked": false,
+    "isDisliked": false
+  }
+]

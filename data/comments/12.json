@@ -1,0 +1,102 @@
+[
+  {
+    "id": "channel-12-1704480000000",
+    "username": "Music Vibes",
+    "userAvatar": "https://i.pravatar.cc/150?img=12",
+    "commentText": "You better subscribe... I know where you live 😈",
+    "timestamp": "2024-01-26T10:00:00.000Z",
+    "likes": 4521,
+    "dislikes": 45,
+    "replies": [
+      {
+        "id": "reply-12-1704480060000",
+        "username": "MelodyLover",
+        "userAvatar": "https://i.pravatar.cc/150?img=133",
+        "commentText": "This is my new favorite channel! The music selection is incredible! 🎵💖",
+        "timestamp": "2024-01-26T10:01:00.000Z",
+        "likes": 678,
+        "dislikes": 3,
+        "replies": [],
+        "isPinned": false,
+        "isChannelOwner": false,
+        "isLiked": false,
+        "isDisliked": false
+      }
+    ],
+    "isPinned": true,
+    "isChannelOwner": true,
+    "isLiked": false,
+    "isDisliked": false
+  },
+  {
+    "id": "user-12-1704480600000",
+    "username": "ChillVibes",
+    "userAvatar": "https://i.pravatar.cc/150?img=134",
+    "commentText": "Perfect background music for studying! This has become my go-to playlist 📚🎧",
+    "timestamp": "2024-01-26T10:10:00.000Z",
+    "likes": 1987,
+    "dislikes": 8,
+    "replies": [
+      {
+        "id": "reply-12-1704480660000",
+        "username": "StudyBuddy",
+        "userAvatar": "https://i.pravatar.cc/150?img=135",
+        "commentText": "Same! I've been more productive than ever with this music",
+        "timestamp": "2024-01-26T10:11:00.000Z",
+        "likes": 345,
+        "dislikes": 1,
+        "replies": [],
+        "isPinned": false,
+        "isChannelOwner": false,
+        "isLiked": false,
+        "isDisliked": false
+      },
+      {
+        "id": "reply-12-1704480720000",
+        "username": "FocusMode",
+        "userAvatar": "https://i.pravatar.cc/150?img=136",
+        "commentText": "The tempo is perfect for concentration! 🧠⚡",
+        "timestamp": "2024-01-26T10:12:00.000Z",
+        "likes": 234,
+        "dislikes": 0,
+        "replies": [],
+        "isPinned": false,
+        "isChannelOwner": false,
+        "isLiked": false,
+        "isDisliked": false
+      }
+    ],
+    "isPinned": false,
+    "isChannelOwner": false,
+    "isLiked": false,
+    "isDisliked": false
+  },
+  {
+    "id": "user-12-1704481200000",
+    "username": "AmbientExplorer",
+    "userAvatar": "https://i.pravatar.cc/150?img=137",
+    "commentText": "The atmospheric layers in this track are absolutely gorgeous! Pure sonic bliss 🌌✨",
+    "timestamp": "2024-01-26T10:20:00.000Z",
+    "likes": 823,
+    "dislikes": 4,
+    "replies": [],
+    "isPinned": false,
+    "isChannelOwner": false,
+    "isLiked": false,
+    "isDisliked": false
+  },
+  {
+    "id": "user-12-1704481800000",
+    "username": "NightOwl",
+    "userAvatar": "https://i.pravatar.cc/150?img=138",
+    "commentText": "This is my late-night coding soundtrack. Helps me get in the zone! 🌙💻",
+    "timestamp": "2024-01-26T10:30:00.000Z",
+    "likes": 567,
+    "dislikes": 2,
+    "replies": [],
+    "isPinned": false,
+    "isChannelOwner": false,
+    "isLiked": false,
+    "isDisliked": false
+  }
+]

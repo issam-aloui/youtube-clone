@@ -1,0 +1,88 @@
+[
+  {
+    "id": "channel-9-1704220800000",
+    "username": "Elephant's Dream",
+    "userAvatar": "https://i.pravatar.cc/150?img=9",
+    "commentText": "You better subscribe... I know where you live 😈",
+    "timestamp": "2024-01-23T10:00:00.000Z",
+    "likes": 1543,
+    "dislikes": 24,
+    "replies": [
+      {
+        "id": "reply-9-1704220860000",
+        "username": "SurrealDreamer",
+        "userAvatar": "https://i.pravatar.cc/150?img=117",
+        "commentText": "This is such a mind-bending experience! Love the surreal atmosphere 🌀",
+        "timestamp": "2024-01-23T10:01:00.000Z",
+        "likes": 287,
+        "dislikes": 3,
+        "replies": [],
+        "isPinned": false,
+        "isChannelOwner": false,
+        "isLiked": false,
+        "isDisliked": false
+      }
+    ],
+    "isPinned": true,
+    "isChannelOwner": true,
+    "isLiked": false,
+    "isDisliked": false
+  },
+  {
+    "id": "user-9-1704221400000",
+    "username": "AbstractArt",
+    "userAvatar": "https://i.pravatar.cc/150?img=118",
+    "commentText": "The artistic vision here is incredible! It's like watching a living painting come to life 🎨✨",
+    "timestamp": "2024-01-23T10:10:00.000Z",
+    "likes": 789,
+    "dislikes": 8,
+    "replies": [
+      {
+        "id": "reply-9-1704221460000",
+        "username": "VisionaryFilm",
+        "userAvatar": "https://i.pravatar.cc/150?img=119",
+        "commentText": "The way they blend reality and dreams is absolutely genius!",
+        "timestamp": "2024-01-23T10:11:00.000Z",
+        "likes": 156,
+        "dislikes": 1,
+        "replies": [],
+        "isPinned": false,
+        "isChannelOwner": false,
+        "isLiked": false,
+        "isDisliked": false
+      }
+    ],
+    "isPinned": false,
+    "isChannelOwner": false,
+    "isLiked": false,
+    "isDisliked": false
+  },
+  {
+    "id": "user-9-1704222000000",
+    "username": "AvantGarde",
+    "userAvatar": "https://i.pravatar.cc/150?img=120",
+    "commentText": "This pushes the boundaries of what animation can be. Truly experimental and beautiful! 🚀",
+    "timestamp": "2024-01-23T10:20:00.000Z",
+    "likes": 445,
+    "dislikes": 5,
+    "replies": [],
+    "isPinned": false,
+    "isChannelOwner": false,
+    "isLiked": false,
+    "isDisliked": false
+  },
+  {
+    "id": "user-9-1704222600000",
+    "username": "FilmStudent",
+    "userAvatar": "https://i.pravatar.cc/150?img=121",
+    "commentText": "Studying this for my animation class. The symbolism and visual metaphors are fascinating! 📚",
+    "timestamp": "2024-01-23T10:30:00.000Z",
+    "likes": 312,
+    "dislikes": 2,
+    "replies": [],
+    "isPinned": false,
+    "isChannelOwner": false,
+    "isLiked": false,
+    "isDisliked": false
+  }
+]

@@ -1,0 +1,88 @@
+[
+  {
+    "id": "channel-10-1704307200000",
+    "username": "Gaming Central",
+    "userAvatar": "https://i.pravatar.cc/150?img=10",
+    "commentText": "You better subscribe... I know where you live 😈",
+    "timestamp": "2024-01-24T10:00:00.000Z",
+    "likes": 3247,
+    "dislikes": 67,
+    "replies": [
+      {
+        "id": "reply-10-1704307260000",
+        "username": "ProGamer2024",
+        "userAvatar": "https://i.pravatar.cc/150?img=122",
+        "commentText": "Best gaming content on the platform! Already subscribed! 🎮🔥",
+        "timestamp": "2024-01-24T10:01:00.000Z",
+        "likes": 567,
+        "dislikes": 2,
+        "replies": [],
+        "isPinned": false,
+        "isChannelOwner": false,
+        "isLiked": false,
+        "isDisliked": false
+      }
+    ],
+    "isPinned": true,
+    "isChannelOwner": true,
+    "isLiked": false,
+    "isDisliked": false
+  },
+  {
+    "id": "user-10-1704307800000",
+    "username": "EpicGameplay",
+    "userAvatar": "https://i.pravatar.cc/150?img=123",
+    "commentText": "That boss fight was insane! The strategies you used were next level 🔥⚔️",
+    "timestamp": "2024-01-24T10:10:00.000Z",
+    "likes": 1456,
+    "dislikes": 12,
+    "replies": [
+      {
+        "id": "reply-10-1704307860000",
+        "username": "BossHunter",
+        "userAvatar": "https://i.pravatar.cc/150?img=124",
+        "commentText": "I've been stuck on this boss for weeks! Thanks for the tips!",
+        "timestamp": "2024-01-24T10:11:00.000Z",
+        "likes": 289,
+        "dislikes": 0,
+        "replies": [],
+        "isPinned": false,
+        "isChannelOwner": false,
+        "isLiked": false,
+        "isDisliked": false
+      },
+      {
+        "id": "reply-10-1704307920000",
+        "username": "StrategyMaster",
+        "userAvatar": "https://i.pravatar.cc/150?img=125",
+        "commentText": "The positioning at 12:34 was brilliant! 🧠",
+        "timestamp": "2024-01-24T10:12:00.000Z",
+        "likes": 178,
+        "dislikes": 1,
+        "replies": [],
+        "isPinned": false,
+        "isChannelOwner": false,
+        "isLiked": false,
+        "isDisliked": false
+      }
+    ],
+    "isPinned": false,
+    "isChannelOwner": false,
+    "isLiked": false,
+    "isDisliked": false
+  },
+  {
+    "id": "user-10-1704308400000",
+    "username": "GameReviewer",
+    "userAvatar": "https://i.pravatar.cc/150?img=126",
+    "commentText": "Your commentary makes even difficult sections entertaining to watch! Keep up the amazing work! 💪",
+    "timestamp": "2024-01-24T10:20:00.000Z",
+    "likes": 823,
+    "dislikes": 5,
+    "replies": [],
+    "isPinned": false,
+    "isChannelOwner": false,
+    "isLiked": false,
+    "isDisliked": false
+  }
+]

@@ -1,0 +1,88 @@
+[
+  {
+    "id": "channel-6-1703961600000",
+    "username": "Sintel",
+    "userAvatar": "https://i.pravatar.cc/150?img=6",
+    "commentText": "You better subscribe... I know where you live 😈",
+    "timestamp": "2024-01-20T10:00:00.000Z",
+    "likes": 2045,
+    "dislikes": 8,
+    "replies": [
+      {
+        "id": "reply-6-1703961660000",
+        "username": "FantasyLover",
+        "userAvatar": "https://i.pravatar.cc/150?img=102",
+        "commentText": "This is a masterpiece! The storytelling is incredible! 🐉✨",
+        "timestamp": "2024-01-20T10:01:00.000Z",
+        "likes": 189,
+        "dislikes": 1,
+        "replies": [],
+        "isPinned": false,
+        "isChannelOwner": false,
+        "isLiked": false,
+        "isDisliked": false
+      }
+    ],
+    "isPinned": true,
+    "isChannelOwner": true,
+    "isLiked": false,
+    "isDisliked": false
+  },
+  {
+    "id": "user-6-1703962200000",
+    "username": "AnimationStudio",
+    "userAvatar": "https://i.pravatar.cc/150?img=103",
+    "commentText": "The attention to detail in every frame is extraordinary. This sets the bar so high for animated films! 🎬",
+    "timestamp": "2024-01-20T10:10:00.000Z",
+    "likes": 1234,
+    "dislikes": 4,
+    "replies": [
+      {
+        "id": "reply-6-1703962260000",
+        "username": "ArtDirection",
+        "userAvatar": "https://i.pravatar.cc/150?img=104",
+        "commentText": "The character design and world-building are phenomenal!",
+        "timestamp": "2024-01-20T10:11:00.000Z",
+        "likes": 298,
+        "dislikes": 0,
+        "replies": [],
+        "isPinned": false,
+        "isChannelOwner": false,
+        "isLiked": false,
+        "isDisliked": false
+      },
+      {
+        "id": "reply-6-1703962320000",
+        "username": "cinephile",
+        "userAvatar": "https://i.pravatar.cc/150?img=105",
+        "commentText": "Agreed! This is what open source filmmaking can achieve 🚀",
+        "timestamp": "2024-01-20T10:12:00.000Z",
+        "likes": 145,
+        "dislikes": 0,
+        "replies": [],
+        "isPinned": false,
+        "isChannelOwner": false,
+        "isLiked": false,
+        "isDisliked": false
+      }
+    ],
+    "isPinned": false,
+    "isChannelOwner": false,
+    "isLiked": false,
+    "isDisliked": false
+  },
+  {
+    "id": "user-6-1703962800000",
+    "username": "DragonTales",
+    "userAvatar": "https://i.pravatar.cc/150?img=106",
+    "commentText": "The emotional depth of this story hits so hard. I wasn't ready for those feels! 😭💖",
+    "timestamp": "2024-01-20T10:20:00.000Z",
+    "likes": 567,
+    "dislikes": 2,
+    "replies": [],
+    "isPinned": false,
+    "isChannelOwner": false,
+    "isLiked": false,
+    "isDisliked": false
+  }
+]
