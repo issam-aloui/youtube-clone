@@ -51,10 +51,16 @@ export default function PlaylistDetailPage() {
         );
 
         if (playlistData) {
-          // Handle dynamic playlists (like liked videos)
+          // Handle dynamic playlists (like liked videos and watch later)
           let videoIds = playlistData.videoIds;
           if (playlistData.isDynamic && playlistId === "liked-videos") {
             videoIds = getLikedVideos();
+          } else if (playlistData.isDynamic && playlistId === "watch-later") {
+            // Get saved videos from localStorage
+            const savedVideos = JSON.parse(
+              localStorage.getItem("youtube-saved-videos") || "[]"
+            );
+            videoIds = savedVideos;
           }
 
           // Make videoIds unique

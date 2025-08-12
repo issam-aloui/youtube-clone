@@ -79,15 +79,11 @@ export default function SideRecommendation({
     }, 1000); // 1 second loading time
   };
 
-  // Scroll detection using external scroll container
+  // Scroll detection using the main layout container
   useEffect(() => {
-    // If no scroll container is provided, don't set up scroll detection
-    if (!scrollContainerRef) {
-      return;
-    }
-
-    const scrollContainer = scrollContainerRef?.current;
-    if (!scrollContainer || isLoading || allVideos.length === 0) {
+    // Find the main tag that contains the watch page
+    const mainContainer = document.querySelector("main");
+    if (!mainContainer || isLoading || allVideos.length === 0) {
       return;
     }
 
@@ -96,11 +92,11 @@ export default function SideRecommendation({
         return;
       }
 
-      const { scrollTop, scrollHeight, clientHeight } = scrollContainer;
+      const { scrollTop, scrollHeight, clientHeight } = mainContainer;
       const scrollBottom = scrollTop + clientHeight;
-      const threshold = 100; // Distance from bottom to trigger loading
+      const threshold = 200; // Distance from bottom to trigger loading
 
-      // Check if user scrolled near bottom of the scrollable container
+      // Check if user scrolled near bottom of the main container
       if (scrollBottom >= scrollHeight - threshold) {
         loadMoreVideos();
       }
@@ -116,15 +112,15 @@ export default function SideRecommendation({
       }, 200);
     };
 
-    scrollContainer.addEventListener("scroll", throttledScroll, {
+    mainContainer.addEventListener("scroll", throttledScroll, {
       passive: true,
     });
 
     return () => {
-      scrollContainer.removeEventListener("scroll", throttledScroll);
+      mainContainer.removeEventListener("scroll", throttledScroll);
       if (timeoutId) clearTimeout(timeoutId);
     };
-  }, [isLoading, isLoadingMore, allVideos.length, page, scrollContainerRef]);
+  }, [isLoading, isLoadingMore, allVideos.length, page]);
 
   const handleVideoClick = (videoId) => {
     // Extract the original video ID (remove page suffix if present)
@@ -137,7 +133,7 @@ export default function SideRecommendation({
   };
 
   return (
-    <Box pt="24px" pr="24px" bg="#121212" minH="100vh">
+    <Box pt="24px" pr="24px" bg="#121212">
       {/* Videos List */}
       <VStack spacing="8px" w="full" align="stretch">
         {isLoading

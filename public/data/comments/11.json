@@ -1,0 +1,102 @@
+[
+  {
+    "id": "channel-11-1704393600000",
+    "username": "Tech Tutorials Pro",
+    "userAvatar": "https://i.pravatar.cc/150?img=11",
+    "commentText": "You better subscribe... I know where you live 😈",
+    "timestamp": "2024-01-25T10:00:00.000Z",
+    "likes": 2789,
+    "dislikes": 34,
+    "replies": [
+      {
+        "id": "reply-11-1704393660000",
+        "username": "CodeNewbie",
+        "userAvatar": "https://i.pravatar.cc/150?img=127",
+        "commentText": "Your tutorials saved my career! Subscribed and notifications on! 🔔💻",
+        "timestamp": "2024-01-25T10:01:00.000Z",
+        "likes": 445,
+        "dislikes": 1,
+        "replies": [],
+        "isPinned": false,
+        "isChannelOwner": false,
+        "isLiked": false,
+        "isDisliked": false
+      }
+    ],
+    "isPinned": true,
+    "isChannelOwner": true,
+    "isLiked": false,
+    "isDisliked": false
+  },
+  {
+    "id": "user-11-1704394200000",
+    "username": "FullStackDev",
+    "userAvatar": "https://i.pravatar.cc/150?img=128",
+    "commentText": "This explanation of async/await is the clearest I've ever seen! Finally understand it completely 🚀",
+    "timestamp": "2024-01-25T10:10:00.000Z",
+    "likes": 1234,
+    "dislikes": 7,
+    "replies": [
+      {
+        "id": "reply-11-1704394260000",
+        "username": "JSMaster",
+        "userAvatar": "https://i.pravatar.cc/150?img=129",
+        "commentText": "Same here! The examples were perfect for understanding the concept",
+        "timestamp": "2024-01-25T10:11:00.000Z",
+        "likes": 267,
+        "dislikes": 0,
+        "replies": [],
+        "isPinned": false,
+        "isChannelOwner": false,
+        "isLiked": false,
+        "isDisliked": false
+      },
+      {
+        "id": "reply-11-1704394320000",
+        "username": "ReactDeveloper",
+        "userAvatar": "https://i.pravatar.cc/150?img=130",
+        "commentText": "Can you do a tutorial on React hooks next? 🙏",
+        "timestamp": "2024-01-25T10:12:00.000Z",
+        "likes": 189,
+        "dislikes": 2,
+        "replies": [],
+        "isPinned": false,
+        "isChannelOwner": false,
+        "isLiked": false,
+        "isDisliked": false
+      }
+    ],
+    "isPinned": false,
+    "isChannelOwner": false,
+    "isLiked": false,
+    "isDisliked": false
+  },
+  {
+    "id": "user-11-1704394800000",
+    "username": "TechStudent",
+    "userAvatar": "https://i.pravatar.cc/150?img=131",
+    "commentText": "Using this for my computer science degree. Your explanations are better than my professors! 📚",
+    "timestamp": "2024-01-25T10:20:00.000Z",
+    "likes": 678,
+    "dislikes": 3,
+    "replies": [],
+    "isPinned": false,
+    "isChannelOwner": false,
+    "isLiked": false,
+    "isDisliked": false
+  },
+  {
+    "id": "user-11-1704395400000",
+    "username": "CareerChanger",
+    "userAvatar": "https://i.pravatar.cc/150?img=132",
+    "commentText": "Thanks to your channel I landed my first developer job! You're changing lives! 🙌💼",
+    "timestamp": "2024-01-25T10:30:00.000Z",
+    "likes": 456,
+    "dislikes": 0,
+    "replies": [],
+    "isPinned": false,
+    "isChannelOwner": false,
+    "isLiked": false,
+    "isDisliked": false
+  }
+]

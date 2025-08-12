@@ -1,0 +1,117 @@
+[
+  {
+    "id": "channel-1-1703529600000",
+    "username": "Blender Studios",
+    "userAvatar": "data:image/svg+xml,%3csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='40' height='40' fill='%23FF6B6B'/%3e%3ctext x='50%25' y='50%25' font-size='18' fill='white' text-anchor='middle' dy='.3em' font-family='Arial'%3eB%3c/text%3e%3c/svg%3e",
+    "commentText": "You better subscribe... I know where you live 😈",
+    "timestamp": "2024-01-15T10:00:00.000Z",
+    "likes": 1247,
+    "dislikes": 3,
+    "replies": [
+      {
+        "id": "reply-1-1703529660000",
+        "username": "gigachad",
+        "userAvatar": "data:image/svg+xml,%3csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='40' height='40' fill='%234ECDC4'/%3e%3ctext x='50%25' y='50%25' font-size='18' fill='white' text-anchor='middle' dy='.3em' font-family='Arial'%3eG%3c/text%3e%3c/svg%3e",
+        "commentText": "Yes sir! Already subscribed and hit the bell! 🔔",
+        "timestamp": "2024-01-15T10:01:00.000Z",
+        "likes": 89,
+        "dislikes": 0,
+        "replies": [],
+        "isPinned": false,
+        "isChannelOwner": false,
+        "isLiked": false,
+        "isDisliked": false
+      }
+    ],
+    "isPinned": true,
+    "isChannelOwner": true,
+    "isLiked": false,
+    "isDisliked": false
+  },
+  {
+    "id": "user-1-1703530200000",
+    "username": "AnimationFan2024",
+    "userAvatar": "https://i.pravatar.cc/150?img=12",
+    "commentText": "This is absolutely incredible! The animation quality is mind-blowing. Blender never ceases to amaze me! 🤯",
+    "timestamp": "2024-01-15T10:10:00.000Z",
+    "likes": 456,
+    "dislikes": 2,
+    "replies": [
+      {
+        "id": "reply-1-1703530260000",
+        "username": "3DArtist",
+        "userAvatar": "https://i.pravatar.cc/150?img=23",
+        "commentText": "Totally agree! Open source at its finest",
+        "timestamp": "2024-01-15T10:11:00.000Z",
+        "likes": 67,
+        "dislikes": 0,
+        "replies": [],
+        "isPinned": false,
+        "isChannelOwner": false,
+        "isLiked": false,
+        "isDisliked": false
+      }
+    ],
+    "isPinned": false,
+    "isChannelOwner": false,
+    "isLiked": false,
+    "isDisliked": false
+  },
+  {
+    "id": "user-1-1703530800000",
+    "username": "MovieBuff87",
+    "userAvatar": "https://i.pravatar.cc/150?img=34",
+    "commentText": "Big Buck Bunny is a classic! Still holds up after all these years. The story is so heartwarming 💕",
+    "timestamp": "2024-01-15T10:20:00.000Z",
+    "likes": 234,
+    "dislikes": 1,
+    "replies": [],
+    "isPinned": false,
+    "isChannelOwner": false,
+    "isLiked": false,
+    "isDisliked": false
+  },
+  {
+    "id": "user-1-1703531400000",
+    "username": "TechReviewer",
+    "userAvatar": "https://i.pravatar.cc/150?img=45",
+    "commentText": "The technical achievement here is outstanding. This proves you don't need a massive budget to create something beautiful!",
+    "timestamp": "2024-01-15T10:30:00.000Z",
+    "likes": 178,
+    "dislikes": 4,
+    "replies": [
+      {
+        "id": "reply-1-1703531460000",
+        "username": "IndieAnimator",
+        "userAvatar": "https://i.pravatar.cc/150?img=56",
+        "commentText": "Exactly! This inspired me to start learning Blender",
+        "timestamp": "2024-01-15T10:31:00.000Z",
+        "likes": 45,
+        "dislikes": 0,
+        "replies": [],
+        "isPinned": false,
+        "isChannelOwner": false,
+        "isLiked": false,
+        "isDisliked": false
+      },
+      {
+        "id": "reply-1-1703531520000",
+        "username": "gigachad",
+        "userAvatar": "https://i.pravatar.cc/150?img=99",
+        "commentText": "Blender is absolutely free too! No excuses not to try it",
+        "timestamp": "2024-01-15T10:32:00.000Z",
+        "likes": 23,
+        "dislikes": 0,
+        "replies": [],
+        "isPinned": false,
+        "isChannelOwner": false,
+        "isLiked": false,
+        "isDisliked": false
+      }
+    ],
+    "isPinned": false,
+    "isChannelOwner": false,
+    "isLiked": false,
+    "isDisliked": false
+  }
+]

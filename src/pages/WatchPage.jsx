@@ -20,6 +20,7 @@ import { useState, useRef, useEffect } from "react";
 import profilePicture from "../assets/images/profilePicture.jpg";
 import likedIcon from "../assets/icons/white_icons/liked.svg";
 import dislikedIcon from "../assets/icons/white_icons/DisLiked.svg";
+import saveIcon from "../assets/icons/white_icons/watch_later.svg";
 
 export default function WatchPage({
   videoId,
@@ -39,6 +40,7 @@ export default function WatchPage({
   const [isLiked, setIsLiked] = useState(false);
   const [isDisliked, setIsDisliked] = useState(false);
   const [isSubscribed, setIsSubscribed] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
   const watchPageRef = useRef(null);
   const formatNumber = useFormatNumber();
   const formatTimeAgo = useFormatTimeAgo();
@@ -48,6 +50,9 @@ export default function WatchPage({
     if (videoId) {
       setIsLiked(isVideoLiked(videoId));
       setIsDisliked(isVideoDisliked(videoId));
+      // Check if video is saved
+      const savedVideos = JSON.parse(localStorage.getItem('youtube-saved-videos') || '[]');
+      setIsSaved(savedVideos.includes(videoId));
     }
     if (channelName) {
       setIsSubscribed(isChannelSubscribed(channelName));
@@ -88,6 +93,26 @@ export default function WatchPage({
         fallbackData.channelName
       );
       setIsSubscribed(newSubscribedState);
+    }
+  };
+
+  // Handle save button click
+  const handleSaveClick = () => {
+    if (videoId) {
+      const savedVideos = JSON.parse(localStorage.getItem('youtube-saved-videos') || '[]');
+      let newSavedVideos;
+      
+      if (isSaved) {
+        // Remove from saved
+        newSavedVideos = savedVideos.filter(id => id !== videoId);
+        setIsSaved(false);
+      } else {
+        // Add to saved
+        newSavedVideos = [...savedVideos, videoId];
+        setIsSaved(true);
+      }
+      
+      localStorage.setItem('youtube-saved-videos', JSON.stringify(newSavedVideos));
     }
   };
 
@@ -350,14 +375,14 @@ export default function WatchPage({
                   <IconButton
                     icon={likedIcon}
                     text={formatNumber(fallbackData.likes)}
-                    bg={isLiked ? "red.600" : "transparent"}
+                    bg={isLiked ? "blue.600" : "transparent"}
                     color="white"
                     fontSize="14px"
                     px="12px"
                     py="8px"
                     h="36px"
                     borderRadius="18px 0 0 18px"
-                    _hover={{ bg: isLiked ? "red.700" : "gray.700" }}
+                    _hover={{ bg: isLiked ? "blue.700" : "gray.700" }}
                     onClick={handleLikeClick}
                   />
                   <Box w="1px" h="24px" bg="gray.600" />
@@ -403,18 +428,19 @@ export default function WatchPage({
                   <Text fontSize="14px">Share</Text>
                 </HStack>
 
-                {/* Download Button */}
+                {/* Save Button */}
                 <HStack
-                  bg="gray.800"
+                  bg={isSaved ? "blue.600" : "gray.800"}
                   color="white"
                   fontSize="14px"
                   px="12px"
                   py="8px"
                   h="36px"
                   borderRadius="18px"
-                  _hover={{ bg: "gray.700" }}
+                  _hover={{ bg: isSaved ? "blue.700" : "gray.700" }}
                   cursor="pointer"
-                  spacing="8px">
+                  spacing="8px"
+                  onClick={handleSaveClick}>
                   <Box
                     w="16px"
                     h="16px"
@@ -422,35 +448,17 @@ export default function WatchPage({
                     alignItems="center"
                     justifyContent="center">
                     <img
-                      src="https://img.icons8.com/material-outlined/24/ffffff/download.png"
-                      alt="Download"
-                      style={{ width: "16px", height: "16px" }}
+                      src={saveIcon}
+                      alt="Save"
+                      style={{ 
+                        width: "16px", 
+                        height: "16px",
+                        filter: isSaved ? "brightness(0) invert(1)" : "brightness(0) invert(1)"
+                      }}
                     />
                   </Box>
-                  <Text fontSize="14px">Download</Text>
+                  <Text fontSize="14px">{isSaved ? "Saved" : "Save"}</Text>
                 </HStack>
-
-                {/* More Button - Three Dots */}
-                <Box
-                  bg="gray.800"
-                  color="white"
-                  fontSize="14px"
-                  px="8px"
-                  py="8px"
-                  h="36px"
-                  w="36px"
-                  borderRadius="18px"
-                  _hover={{ bg: "gray.700" }}
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="center"
-                  cursor="pointer">
-                  <img
-                    src="https://img.icons8.com/material-outlined/24/ffffff/more.png"
-                    alt="More"
-                    style={{ width: "16px", height: "16px" }}
-                  />
-                </Box>
               </HStack>
             </Flex>
           </Box>
@@ -542,13 +550,16 @@ export default function WatchPage({
           </Box>
 
           {/* Comments Section */}
-          <CommentSection />
+          <CommentSection 
+            channelName={fallbackData.channelName} 
+            videoId={videoId} 
+          />
 
           {/* Remove duplicate description section */}
         </Box>
       </Box>
       {/* Side Section - Right Side */}
-      <Box w="25%" h="100vh" bg="#121212">
+      <Box w="25%" bg="#121212">
         {playlistId ? (
           <PlaylistSidebar playlistId={playlistId} currentVideoId={videoId} />
         ) : (

@@ -47,7 +47,10 @@ const LayoutContent = () => {
         </div>
 
         {/* Main Content - Takes remaining space */}
-        <main className="flex-1 overflow-hidden">
+        <main
+          className={`flex-1 ${
+            isWatchPage ? "overflow-auto" : "overflow-hidden"
+          }`}>
           <Outlet />
         </main>
       </div>

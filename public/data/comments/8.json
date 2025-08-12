@@ -1,0 +1,88 @@
+[
+  {
+    "id": "channel-8-1704134400000",
+    "username": "Big Buck Bunny",
+    "userAvatar": "https://i.pravatar.cc/150?img=8",
+    "commentText": "You better subscribe... I know where you live 😈",
+    "timestamp": "2024-01-22T10:00:00.000Z",
+    "likes": 2156,
+    "dislikes": 19,
+    "replies": [
+      {
+        "id": "reply-8-1704134460000",
+        "username": "BunnyLover",
+        "userAvatar": "https://i.pravatar.cc/150?img=112",
+        "commentText": "This is the cutest thing ever! Big Buck Bunny rocks! 🐰💖",
+        "timestamp": "2024-01-22T10:01:00.000Z",
+        "likes": 445,
+        "dislikes": 0,
+        "replies": [],
+        "isPinned": false,
+        "isChannelOwner": false,
+        "isLiked": false,
+        "isDisliked": false
+      }
+    ],
+    "isPinned": true,
+    "isChannelOwner": true,
+    "isLiked": false,
+    "isDisliked": false
+  },
+  {
+    "id": "user-8-1704135000000",
+    "username": "FamilyMovieNight",
+    "userAvatar": "https://i.pravatar.cc/150?img=113",
+    "commentText": "Perfect for kids and adults alike! The humor and heart in this short film is amazing 😊",
+    "timestamp": "2024-01-22T10:10:00.000Z",
+    "likes": 1087,
+    "dislikes": 3,
+    "replies": [
+      {
+        "id": "reply-8-1704135060000",
+        "username": "ParentApproved",
+        "userAvatar": "https://i.pravatar.cc/150?img=114",
+        "commentText": "Finally something wholesome the whole family can enjoy!",
+        "timestamp": "2024-01-22T10:11:00.000Z",
+        "likes": 234,
+        "dislikes": 0,
+        "replies": [],
+        "isPinned": false,
+        "isChannelOwner": false,
+        "isLiked": false,
+        "isDisliked": false
+      },
+      {
+        "id": "reply-8-1704135120000",
+        "username": "ChildhoodNostalgia",
+        "userAvatar": "https://i.pravatar.cc/150?img=115",
+        "commentText": "This brings back memories of Saturday morning cartoons! 📺",
+        "timestamp": "2024-01-22T10:12:00.000Z",
+        "likes": 189,
+        "dislikes": 1,
+        "replies": [],
+        "isPinned": false,
+        "isChannelOwner": false,
+        "isLiked": false,
+        "isDisliked": false
+      }
+    ],
+    "isPinned": false,
+    "isChannelOwner": false,
+    "isLiked": false,
+    "isDisliked": false
+  },
+  {
+    "id": "user-8-1704135600000",
+    "username": "AnimationAppreciator",
+    "userAvatar": "https://i.pravatar.cc/150?img=116",
+    "commentText": "The character animation is so expressive! Every frame shows incredible attention to detail 🎬",
+    "timestamp": "2024-01-22T10:20:00.000Z",
+    "likes": 623,
+    "dislikes": 2,
+    "replies": [],
+    "isPinned": false,
+    "isChannelOwner": false,
+    "isLiked": false,
+    "isDisliked": false
+  }
+]

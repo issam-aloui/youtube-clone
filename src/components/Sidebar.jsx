@@ -368,7 +368,7 @@ const Sidebar = memo(() => {
         <AnchorButton
           icon={watchLaterIcon}
           text="Watch later"
-          href="/watch-later"
+          href="/playlist?id=watch-later"
           className="!px-3 !py-2"
         />
         <AnchorButton

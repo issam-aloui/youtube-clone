@@ -1,0 +1,74 @@
+[
+  {
+    "id": "channel-3-1703702400000",
+    "username": "Tech Channel",
+    "userAvatar": "https://i.pravatar.cc/150?img=3",
+    "commentText": "You better subscribe... I know where you live 😈",
+    "timestamp": "2024-01-17T10:00:00.000Z",
+    "likes": 1456,
+    "dislikes": 7,
+    "replies": [
+      {
+        "id": "reply-3-1703702460000",
+        "username": "CodeMaster",
+        "userAvatar": "https://i.pravatar.cc/150?img=92",
+        "commentText": "Best tech content on YouTube! Already smashed that subscribe button",
+        "timestamp": "2024-01-17T10:01:00.000Z",
+        "likes": 123,
+        "dislikes": 0,
+        "replies": [],
+        "isPinned": false,
+        "isChannelOwner": false,
+        "isLiked": false,
+        "isDisliked": false
+      }
+    ],
+    "isPinned": true,
+    "isChannelOwner": true,
+    "isLiked": false,
+    "isDisliked": false
+  },
+  {
+    "id": "user-3-1703703000000",
+    "username": "JavaDeveloper",
+    "userAvatar": "https://i.pravatar.cc/150?img=93",
+    "commentText": "This tutorial saved my career! The explanation is so clear and easy to follow. Thank you! 💻",
+    "timestamp": "2024-01-17T10:10:00.000Z",
+    "likes": 678,
+    "dislikes": 4,
+    "replies": [
+      {
+        "id": "reply-3-1703703060000",
+        "username": "gigachad",
+        "userAvatar": "https://i.pravatar.cc/150?img=99",
+        "commentText": "Same here! Got promoted after applying these concepts",
+        "timestamp": "2024-01-17T10:11:00.000Z",
+        "likes": 98,
+        "dislikes": 0,
+        "replies": [],
+        "isPinned": false,
+        "isChannelOwner": false,
+        "isLiked": false,
+        "isDisliked": false
+      }
+    ],
+    "isPinned": false,
+    "isChannelOwner": false,
+    "isLiked": false,
+    "isDisliked": false
+  },
+  {
+    "id": "user-3-1703703600000",
+    "username": "StudentCoder",
+    "userAvatar": "https://i.pravatar.cc/150?img=94",
+    "commentText": "Finally someone who explains complex concepts in simple terms! This is gold for beginners 🌟",
+    "timestamp": "2024-01-17T10:20:00.000Z",
+    "likes": 456,
+    "dislikes": 2,
+    "replies": [],
+    "isPinned": false,
+    "isChannelOwner": false,
+    "isLiked": false,
+    "isDisliked": false
+  }
+]
